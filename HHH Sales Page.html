@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="/favicon.png" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Healthy Happy Hair — by Aida Sol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --paper:   #FCFAF6;
+  --canvas:  #F2EDE4;
+  --canvas2: #EAE3D6;
+  --ink:     #2E2A25;
+  --ink-2:   #6E655A;
+  --ink-3:   #9A9082;
+  --line:    #D7CDBC;
+  --green:   #557355;
+  --green-d: #476048;
+  --gold:    #D29A2E;
+  --orange:  #DD7E33;
+  --terra:   #db6640;
+  --brick:   #A8432B;
+  --bg-peach:#F6E3D2;
+  --bg-green:#E4EBDB;
+  --bg-gold: #F4E8CC;
+  --r: "Newsreader", Georgia, serif;
+  --u: "Hanken Grotesk", system-ui, sans-serif;
+}
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--r);
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(252,250,246,.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(46,42,37,.07);
+  padding: 0 clamp(20px,5vw,80px);
+  height: 60px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
+.nav-brand {
+  font-family: var(--r);
+  font-size: clamp(15px,2vw,18px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: .01em;
+}
+.nav-brand .g { color: var(--green); }
+.nav-brand .o { color: var(--orange); }
+.nav-brand .t { color: var(--brick); }
+.nav-links { display: flex; align-items: center; gap: clamp(14px,2.5vw,32px); }
+.nav-links a {
+  font-family: var(--u); font-size: 13px; font-weight: 500;
+  letter-spacing: .04em; text-decoration: none; color: var(--ink-2);
+  transition: color .15s;
+}
+.nav-links a:hover { color: var(--brick); }
+.nav-cta {
+  font-family: var(--u); font-size: 13px; font-weight: 600;
+  background: var(--brick); color: #fff;
+  border: none; border-radius: 100px; cursor: pointer;
+  padding: 9px 22px; letter-spacing: .04em;
+  text-decoration: none;
+  transition: background .15s, transform .12s;
+  white-space: nowrap;
+}
+.nav-cta:hover { background: var(--terra); transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 92svh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--paper) 55%, var(--bg-peach) 100%);
+}
+.hero-text {
+  padding: clamp(48px,8vw,120px) clamp(24px,5vw,80px) clamp(48px,8vw,120px) clamp(24px,7vw,120px);
+  display: flex; flex-direction: column; gap: 0;
+}
+.hero-eyebrow {
+  font-family: var(--u); font-size: clamp(10px,1vw,12px); font-weight: 700;
+  letter-spacing: .3em; text-transform: uppercase; color: var(--green);
+  margin-bottom: 18px;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--green); border-radius: 2px; }
+.hero-h1 {
+  font-family: var(--r);
+  font-size: clamp(44px, 6.5vw, 88px);
+  font-weight: 500;
+  line-height: .98;
+  letter-spacing: -.025em;
+  margin-bottom: 24px;
+}
+.hero-h1 .g { color: var(--green); }
+.hero-h1 .o { color: var(--orange); }
+.hero-h1 .t { color: var(--brick); }
+.hero-sub {
+  font-size: clamp(15px,1.5vw,19px);
+  line-height: 1.65;
+  color: var(--ink-2);
+  margin-bottom: 36px;
+  max-width: 40ch;
+}
+.hero-sub em { color: var(--green-d); font-style: italic; }
+.hero-pills {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px;
+}
+.pill {
+  font-family: var(--u); font-size: 11px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 100px;
+  background: var(--bg-gold); color: #8a6010;
+  border: 1px solid rgba(210,154,46,.3);
+}
+.pill.g { background: var(--bg-green); color: var(--green-d); border-color: rgba(85,115,85,.2); }
+.pill.p { background: var(--bg-peach); color: var(--brick); border-color: rgba(168,67,43,.2); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.btn-primary {
+  font-family: var(--u); font-size: 15px; font-weight: 700;
+  letter-spacing: .04em;
+  background: var(--brick); color: #fff;
+  border: none; border-radius: 100px; cursor: pointer;
+  padding: 16px 36px;
+  text-decoration: none; display: inline-block;
+  transition: background .15s, transform .12s, box-shadow .15s;
+  box-shadow: 0 8px 24px -6px rgba(168,67,43,.45);
+}
+.btn-primary:hover { background: var(--terra); transform: translateY(-2px); box-shadow: 0 14px 32px -8px rgba(168,67,43,.5); }
+.btn-ghost {
+  font-family: var(--u); font-size: 14px; font-weight: 500;
+  color: var(--ink-2); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 7px;
+  transition: color .15s;
+}
+.btn-ghost:hover { color: var(--brick); }
+.btn-ghost svg { transition: transform .15s; }
+.btn-ghost:hover svg { transform: translateX(3px); }
+.hero-social-proof {
+  margin-top: 40px; display: flex; align-items: center; gap: 12px;
+}
+.stars { color: var(--gold); font-size: 16px; letter-spacing: 2px; }
+.proof-text { font-family: var(--u); font-size: 12px; color: var(--ink-3); }
+.hero-img {
+  height: 100%; min-height: 520px;
+  display: flex; align-items: center; justify-content: flex-end;
+  padding: 40px clamp(20px,4vw,60px) 40px 0;
+  position: relative;
+}
+.hero-img::before {
+  content: "";
+  position: absolute; inset: 0 0 0 40%;
+  background: radial-gradient(ellipse at 70% 50%, rgba(246,227,210,.6) 0%, transparent 70%);
+  pointer-events: none;
+}
+.book-stack {
+  position: relative; width: clamp(180px,22vw,320px);
+}
+.book-main {
+  width: 100%;
+  border-radius: 6px;
+  box-shadow:
+    -8px 10px 30px -4px rgba(46,40,30,.35),
+    0 3px 8px rgba(46,40,30,.15),
+    inset -2px 0 0 rgba(0,0,0,.08);
+  transform: perspective(800px) rotateY(-4deg) rotateX(1deg);
+  transition: transform .4s ease;
+  display: block;
+}
+.book-main:hover { transform: perspective(800px) rotateY(-1deg) rotateX(0deg) translateY(-6px); }
+.book-badge {
+  position: absolute; bottom: -14px; right: -20px;
+  width: 84px; height: 84px; border-radius: 50%;
+  background: var(--brick); color: #fff;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: 0 6px 20px -4px rgba(168,67,43,.5);
+  text-align: center;
+  font-family: var(--u);
+}
+.book-badge .big { font-size: 22px; font-weight: 700; line-height: 1; }
+.book-badge .sm  { font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .85; }
+
+/* ── SECTION COMMON ── */
+section { padding: clamp(60px,8vw,110px) clamp(20px,6vw,100px); }
+.section-label {
+  font-family: var(--u); font-size: 11px; font-weight: 700;
+  letter-spacing: .32em; text-transform: uppercase; color: var(--green);
+  display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+}
+.section-label::before { content: ""; width: 24px; height: 2px; background: var(--green); border-radius: 2px; }
+.section-h2 {
+  font-family: var(--r); font-size: clamp(30px,4vw,52px);
+  font-weight: 500; line-height: 1.1; letter-spacing: -.02em;
+  margin-bottom: 16px; text-wrap: balance;
+}
+.section-sub {
+  font-size: clamp(14px,1.3vw,17px); line-height: 1.7;
+  color: var(--ink-2); max-width: 52ch; margin-bottom: 48px;
+}
+
+/* ── WHAT'S INCLUDED ── */
+.included { background: var(--canvas); }
+.included-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.inc-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 32px;
+  display: flex; flex-direction: column; gap: 14px;
+  position: relative; overflow: hidden;
+  transition: box-shadow .2s, transform .2s;
+}
+.inc-card:hover { box-shadow: 0 16px 48px -12px rgba(46,40,30,.18); transform: translateY(-3px); }
+.inc-card::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  border-radius: 12px 12px 0 0;
+}
+.inc-card.green::before { background: linear-gradient(90deg, var(--green), var(--gold)); }
+.inc-card.brick::before { background: linear-gradient(90deg, var(--brick), var(--orange)); }
+.inc-card.gold::before  { background: linear-gradient(90deg, var(--gold), var(--terra)); }
+.inc-icon {
+  width: 48px; height: 48px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.inc-icon.g { background: var(--bg-green); }
+.inc-icon.p { background: var(--bg-peach); }
+.inc-icon.y { background: var(--bg-gold); }
+.inc-card h3 {
+  font-family: var(--r); font-size: 20px; font-weight: 500; line-height: 1.2;
+  color: var(--ink);
+}
+.inc-card p { font-size: 14px; line-height: 1.65; color: var(--ink-2); }
+.inc-tag {
+  font-family: var(--u); font-size: 10px; font-weight: 700;
+  letter-spacing: .15em; text-transform: uppercase;
+  display: inline-block; margin-top: auto; padding-top: 10px;
+  color: var(--ink-3);
+}
+
+/* ── FEATURES STRIP ── */
+.features { background: var(--paper); }
+.features-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px,6vw,80px);
+  align-items: center;
+}
+.features-list { display: flex; flex-direction: column; gap: 28px; }
+.feat {
+  display: flex; gap: 18px; align-items: flex-start;
+  padding-bottom: 28px; border-bottom: 1px solid var(--line);
+}
+.feat:last-child { border-bottom: none; padding-bottom: 0; }
+.feat-num {
+  font-family: var(--r); font-size: 36px; font-weight: 300;
+  color: var(--line); line-height: 1; min-width: 32px;
+  letter-spacing: -.04em;
+}
+.feat-body h3 {
+  font-family: var(--r); font-size: 18px; font-weight: 500;
+  margin-bottom: 5px; color: var(--ink);
+}
+.feat-body p { font-size: 14px; line-height: 1.65; color: var(--ink-2); }
+.features-visual {
+  position: relative;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.fv-card {
+  background: var(--canvas);
+  border: 1px solid var(--line);
+  border-radius: 10px; padding: 20px 24px;
+  display: flex; align-items: center; gap: 16px;
+  transition: transform .2s;
+}
+.fv-card:nth-child(2) { transform: translateX(28px); }
+.fv-card:nth-child(3) { transform: translateX(8px); }
+.fv-card:hover { transform: translateX(0) translateY(-2px) !important; }
+.fv-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.fv-dot.g { background: var(--green); }
+.fv-dot.o { background: var(--orange); }
+.fv-dot.t { background: var(--brick); }
+.fv-card-text h4 { font-family: var(--r); font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+.fv-card-text p  { font-family: var(--u); font-size: 11px; color: var(--ink-3); letter-spacing: .04em; }
+
+/* ── CHAPTERS ── */
+.chapters { background: var(--canvas); }
+.chap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+.chap {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: 8px; padding: 18px 20px;
+  display: flex; gap: 14px; align-items: flex-start;
+  transition: box-shadow .18s, transform .18s;
+}
+.chap:hover { box-shadow: 0 8px 24px -8px rgba(46,40,30,.16); transform: translateY(-2px); }
+.chap-num {
+  font-family: var(--r); font-size: 26px; font-weight: 300;
+  color: var(--line); line-height: 1; min-width: 24px; letter-spacing: -.04em;
+}
+.chap-title { font-family: var(--r); font-size: 13.5px; font-weight: 500; line-height: 1.35; color: var(--ink); }
+.chap-part  { font-family: var(--u); font-size: 9.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 4px; }
+
+/* ── PRICING ── */
+.pricing { background: var(--paper); }
+.pricing-inner {
+  max-width: 720px; margin: 0 auto;
+  background: linear-gradient(135deg, var(--canvas), var(--bg-peach) 80%);
+  border: 1px solid var(--line);
+  border-radius: 20px; padding: clamp(36px,5vw,64px);
+  text-align: center; position: relative; overflow: hidden;
+}
+.pricing-inner::before {
+  content: "";
+  position: absolute; top: -60px; right: -60px;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(168,67,43,.08), transparent 70%);
+  pointer-events: none;
+}
+.pricing-badge {
+  display: inline-block; margin-bottom: 20px;
+  background: var(--green); color: #fff;
+  font-family: var(--u); font-size: 10px; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 100px;
+}
+.pricing-inner h2 {
+  font-family: var(--r); font-size: clamp(26px,4vw,44px);
+  font-weight: 500; line-height: 1.1; letter-spacing: -.02em;
+  margin-bottom: 10px;
+}
+.pricing-inner p {
+  font-size: 15px; color: var(--ink-2); line-height: 1.6; margin-bottom: 32px; max-width: 44ch; margin-left: auto; margin-right: auto;
+}
+.price-tag {
+  display: flex; align-items: baseline; justify-content: center;
+  gap: 6px; margin-bottom: 32px;
+}
+.price-currency { font-family: var(--u); font-size: 22px; font-weight: 600; color: var(--brick); }
+.price-amount   { font-family: var(--r); font-size: clamp(56px,8vw,88px); font-weight: 500; line-height: 1; letter-spacing: -.04em; color: var(--brick); }
+.price-period   { font-family: var(--u); font-size: 13px; color: var(--ink-3); font-weight: 500; }
+.pricing-includes {
+  display: flex; flex-direction: column; gap: 10px;
+  text-align: left; max-width: 380px; margin: 0 auto 36px;
+}
+.pi-row {
+  display: flex; gap: 12px; align-items: center;
+  font-size: 14px; color: var(--ink);
+}
+.pi-check {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--bg-green); color: var(--green);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.pi-check svg { width: 13px; height: 13px; stroke-width: 2.5; }
+.btn-buy {
+  font-family: var(--u); font-size: 16px; font-weight: 700;
+  letter-spacing: .04em;
+  background: var(--brick); color: #fff;
+  border: none; border-radius: 100px; cursor: pointer;
+  padding: 18px 52px; display: inline-block; text-decoration: none;
+  transition: background .15s, transform .12s, box-shadow .15s;
+  box-shadow: 0 10px 32px -6px rgba(168,67,43,.5);
+  margin-bottom: 14px;
+}
+.btn-buy:hover { background: var(--terra); transform: translateY(-2px); box-shadow: 0 16px 40px -8px rgba(168,67,43,.55); }
+.pricing-note {
+  font-family: var(--u); font-size: 11.5px; color: var(--ink-3);
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.pricing-note svg { opacity: .5; }
+
+/* ── AUTHOR ── */
+.author { background: var(--canvas); }
+.author-inner {
+  display: grid; grid-template-columns: auto 1fr; gap: clamp(28px,4vw,64px);
+  align-items: center; max-width: 900px;
+}
+.author-portrait {
+  width: clamp(120px,14vw,200px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--bg-peach), var(--bg-gold));
+  border: 3px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-size: clamp(48px,6vw,80px);
+  flex-shrink: 0;
+}
+.author-text blockquote {
+  font-family: var(--r); font-size: clamp(16px,2vw,22px);
+  font-weight: 400; font-style: italic; line-height: 1.55;
+  color: var(--ink); margin-bottom: 16px;
+}
+.author-name {
+  font-family: var(--u); font-size: 13px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2);
+}
+
+/* ── FAQ ── */
+.faq { background: var(--paper); }
+.faq-grid { display: flex; flex-direction: column; gap: 0; max-width: 780px; }
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+.faq-q {
+  font-family: var(--r); font-size: clamp(15px,1.4vw,18px); font-weight: 500;
+  color: var(--ink); cursor: pointer;
+  padding: 22px 0;
+  display: flex; justify-content: space-between; align-items: center; gap: 20px;
+  transition: color .15s;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.faq-q:hover { color: var(--brick); }
+.faq-q .faq-icon {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1.5px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink-3); flex-shrink: 0; font-size: 18px; line-height: 1;
+  transition: border-color .15s, color .15s, transform .2s;
+}
+.faq-item.open .faq-icon { border-color: var(--brick); color: var(--brick); transform: rotate(45deg); }
+.faq-a {
+  font-size: 14.5px; line-height: 1.7; color: var(--ink-2);
+  max-height: 0; overflow: hidden;
+  transition: max-height .3s ease, padding .3s ease;
+  padding: 0;
+}
+.faq-item.open .faq-a { max-height: 300px; padding-bottom: 22px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,.6);
+  padding: clamp(36px,5vw,56px) clamp(20px,6vw,100px);
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 20px;
+}
+.footer-brand { font-family: var(--r); font-size: 17px; font-weight: 500; color: #fff; }
+.footer-brand .g { color: #8dba7b; }
+.footer-brand .o { color: #e8a05c; }
+.footer-brand .t { color: #cf7455; }
+footer p { font-family: var(--u); font-size: 12px; letter-spacing: .04em; }
+footer a { color: rgba(255,255,255,.5); text-decoration: none; transition: color .15s; }
+footer a:hover { color: #fff; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-img {
+    justify-content: center; padding: 0 24px 48px;
+    order: -1; min-height: 0;
+  }
+  .book-stack { width: clamp(140px,50vw,220px); }
+  .hero-text { padding: 40px 24px 36px; }
+  .hero-h1 { font-size: clamp(40px,10vw,64px); }
+  .features-inner { grid-template-columns: 1fr; }
+  .features-visual { display: none; }
+  .author-inner { grid-template-columns: 1fr; text-align: center; }
+  .author-portrait { margin: 0 auto; }
+  nav .nav-links { display: none; }
+}
+@media (max-width: 480px) {
+  .pricing-inner { padding: 28px 20px; }
+  .chap-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-brand">
+    <span class="g">Healthy</span> <span class="o">Happy</span> <span class="t">Hair</span>
+  </div>
+  <div class="nav-links">
+    <a href="#included">What's Inside</a>
+    <a href="#chapters">Chapters</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a href="#pricing" class="nav-cta">Get Access</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" style="padding:0;">
+  <div class="hero-text">
+    <div class="hero-eyebrow">New Release · by Aida Sol</div>
+    <h1 class="hero-h1">
+      <span class="g">Heal</span><span>thy</span><br>
+      <span class="o">Hap</span><span>py</span><br>
+      <span class="t">Hair</span>
+    </h1>
+    <p class="hero-sub">A modern, science-backed guide to nurturing your scalp, strengthening your strands, and <em>celebrating the beauty of every strand.</em></p>
+    <div class="hero-pills">
+      <span class="pill g">20 Chapters</span>
+      <span class="pill p">Interactive Journal</span>
+      <span class="pill">Scalp &amp; Nutrition Guide</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-primary">Get Instant Access →</a>
+      <a href="#included" class="btn-ghost">See what's inside
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="hero-social-proof">
+      <span class="stars">★★★★★</span>
+      <span class="proof-text">Loved by thousands of women on their hair journey</span>
+    </div>
+  </div>
+  <div class="hero-img">
+    <div class="book-stack">
+      <img src="assets/cover.png" alt="Healthy Happy Hair book cover" class="book-main" />
+      <div class="book-badge">
+        <span class="big">3-in-1</span>
+        <span class="sm">Bundle</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST BAR ── -->
+<div style="background:var(--canvas2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px clamp(20px,6vw,100px);">
+  <div style="display:flex;flex-wrap:wrap;gap:clamp(20px,4vw,56px);align-items:center;justify-content:center;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span style="font-family:var(--u);font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--ink-2);text-transform:uppercase;">Secure Stripe Checkout</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span style="font-family:var(--u);font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--ink-2);text-transform:uppercase;">Instant Access</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+      <span style="font-family:var(--u);font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--ink-2);text-transform:uppercase;">Read on Any Device</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+      <span style="font-family:var(--u);font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--ink-2);text-transform:uppercase;">30-Day Guarantee</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── WHAT'S INCLUDED ── -->
+<section class="included" id="included">
+  <div class="section-label">The Bundle</div>
+  <h2 class="section-h2">Everything you need for<br>your hair health journey</h2>
+  <p class="section-sub">One purchase unlocks your full digital library — beautifully designed for daily use, on any screen.</p>
+  <div class="included-grid">
+    <div class="inc-card green">
+      <div class="inc-icon g">📖</div>
+      <h3>The Ebook</h3>
+      <p>20 science-backed chapters covering scalp biology, nutrition, nervous system connections, hair colour, and more. Beautifully formatted for online reading.</p>
+      <span class="inc-tag">Online Reader Included</span>
+    </div>
+    <div class="inc-card brick">
+      <div class="inc-icon p">✏️</div>
+      <h3>Companion Journal</h3>
+      <p>An interactive digital journal with daily trackers, scalp check-ins, water intake, mood scales, weekly reflections, and a vision board — all auto-saved.</p>
+      <span class="inc-tag">Web App · Works on Mobile</span>
+    </div>
+    <div class="inc-card gold">
+      <div class="inc-icon y">📄</div>
+      <h3>PDF Editions</h3>
+      <p>Print-ready PDF versions of both the ebook and journal — formatted to A5 with the same elegant typography and design. Download and keep forever.</p>
+      <span class="inc-tag">Print-Ready · A5 Format</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURES ── -->
+<section class="features">
+  <div class="features-inner">
+    <div>
+      <div class="section-label">Why It Works</div>
+      <h2 class="section-h2">Built for real, lasting change</h2>
+      <p class="section-sub" style="margin-bottom:36px;">Not another quick-fix routine — a complete, grounded system for understanding your hair from the inside out.</p>
+      <div class="features-list">
+        <div class="feat">
+          <div class="feat-num">01</div>
+          <div class="feat-body">
+            <h3>Root-cause approach</h3>
+            <p>Understand the real drivers behind hair loss, thinning, and scalp issues — from stress hormones to nutritional gaps.</p>
+          </div>
+        </div>
+        <div class="feat">
+          <div class="feat-num">02</div>
+          <div class="feat-body">
+            <h3>Track your progress daily</h3>
+            <p>The interactive journal keeps you consistent with gentle daily check-ins, mood tracking, and reflections that build over time.</p>
+          </div>
+        </div>
+        <div class="feat">
+          <div class="feat-num">03</div>
+          <div class="feat-body">
+            <h3>Science you can actually use</h3>
+            <p>Evidence-based insights translated into simple, actionable steps — no overwhelm, no jargon.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="features-visual">
+      <div class="fv-card">
+        <div class="fv-dot g"></div>
+        <div class="fv-card-text">
+          <h4>Scalp health score tracked</h4>
+          <p>Daily · Auto-saved</p>
+        </div>
+      </div>
+      <div class="fv-card">
+        <div class="fv-dot o"></div>
+        <div class="fv-card-text">
+          <h4>Nutrition &amp; supplement guide</h4>
+          <p>Ch. 11–14 · Printable charts</p>
+        </div>
+      </div>
+      <div class="fv-card">
+        <div class="fv-dot t"></div>
+        <div class="fv-card-text">
+          <h4>Vision board &amp; hair goals</h4>
+          <p>Upload your inspiration photos</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHAPTERS ── -->
+<section class="chapters" id="chapters">
+  <div class="section-label">Inside the Ebook</div>
+  <h2 class="section-h2">20 chapters. One complete picture.</h2>
+  <p class="section-sub">From scalp biology to self-care rituals — every chapter builds on the last.</p>
+  <div class="chap-grid" id="chapGrid">
+    <!-- filled by JS -->
+  </div>
+</section>
+
+<!-- ── PRICING ── -->
+<section class="pricing" id="pricing">
+  <div class="pricing-inner">
+    <div class="pricing-badge">Limited Launch Price</div>
+    <h2>The Complete<br><em style="color:var(--brick)">Hair Health Bundle</em></h2>
+    <p>Ebook + Interactive Journal + PDF editions. One payment, lifetime access.</p>
+    <div class="price-tag">
+      <span class="price-currency">$</span>
+      <span class="price-amount">27</span>
+      <span class="price-period">one-time</span>
+    </div>
+    <div class="pricing-includes">
+      <div class="pi-row">
+        <div class="pi-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <span>Healthy Happy Hair — full ebook (20 chapters)</span>
+      </div>
+      <div class="pi-row">
+        <div class="pi-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <span>Interactive Companion Journal — web app</span>
+      </div>
+      <div class="pi-row">
+        <div class="pi-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <span>Print-ready PDF editions (ebook + journal)</span>
+      </div>
+      <div class="pi-row">
+        <div class="pi-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <span>Lifetime access + all future updates</span>
+      </div>
+      <div class="pi-row">
+        <div class="pi-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <span>Works on phone, tablet &amp; desktop</span>
+      </div>
+    </div>
+    <!-- Replace href with your Stripe payment link -->
+    <a href="#" class="btn-buy" id="stripeBtn">Get Instant Access — $27</a><br>
+    <div class="pricing-note">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Secure checkout via Stripe · 30-day money-back guarantee
+    </div>
+  </div>
+</section>
+
+<!-- ── AUTHOR ── -->
+<section class="author">
+  <div class="author-inner">
+    <div class="author-portrait">🌿</div>
+    <div class="author-text">
+      <div class="section-label" style="margin-bottom:12px;">About the Author</div>
+      <blockquote>"I wrote this book because I wish someone had given it to me when my hair was falling out and I had no idea where to start. It's the guide I needed — rooted in science, written with heart."</blockquote>
+      <div class="author-name">Aida Sol · Author of Healthy Happy Hair</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="faq" id="faq">
+  <div class="section-label">Questions</div>
+  <h2 class="section-h2" style="margin-bottom:36px;">Frequently asked</h2>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <div class="faq-q" tabindex="0">How do I access the ebook and journal after purchase?<span class="faq-icon">+</span></div>
+      <div class="faq-a">After completing checkout via Stripe, you'll receive an email with a private link to your personal access page. You can bookmark it and return anytime on any device — no app download needed.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" tabindex="0">Can I use it on my phone?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Absolutely. The ebook and journal are both fully mobile-optimised. The journal in particular is designed for quick daily check-ins on your phone, and your entries are saved automatically.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" tabindex="0">Is this a physical book?<span class="faq-icon">+</span></div>
+      <div class="faq-a">This is a digital bundle — online reader, web journal, and PDF downloads. If you'd love a physical copy in the future, we're exploring print options. Join the list and we'll let you know!</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" tabindex="0">What if I bought it on Etsy or another platform?<span class="faq-icon">+</span></div>
+      <div class="faq-a">If you purchased through Etsy or another retailer, check your order confirmation email — it will contain a private link to your access page. Can't find it? Email us and we'll sort it out right away.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" tabindex="0">Is there a refund policy?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes — if you're not satisfied within 30 days of purchase, just email us and we'll issue a full refund, no questions asked.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div>
+    <div class="footer-brand"><span class="g">Healthy</span> <span class="o">Happy</span> <span class="t">Hair</span></div>
+    <p style="margin-top:6px;">by Aida Sol · © 2025</p>
+  </div>
+  <p>
+    <a href="#">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="#">Terms</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@healthyhappyhair.com">Contact</a>
+  </p>
+</footer>
+
+<script>
+// ── Chapter data ──
+const chapters = [
+  { num:'01', part:'Foundations',     title:'Your Hair, Your Crown' },
+  { num:'02', part:'Foundations',     title:'The Biology of a Hair Strand' },
+  { num:'03', part:'Foundations',     title:'Scalp: The Living Ecosystem' },
+  { num:'04', part:'Foundations',     title:'The Hair Growth Cycle' },
+  { num:'05', part:'Inside Out',      title:'Nutrition & Your Hair' },
+  { num:'06', part:'Inside Out',      title:'Blood Tests for Hair Health' },
+  { num:'07', part:'Inside Out',      title:'Hormones & the Hair Connection' },
+  { num:'08', part:'Inside Out',      title:'Stress, the Nervous System & Hair' },
+  { num:'09', part:'Inside Out',      title:'Sleep, Rest & Recovery' },
+  { num:'10', part:'Inside Out',      title:'Gut Health & Hair' },
+  { num:'11', part:'Care Rituals',    title:'Washing & Cleansing' },
+  { num:'12', part:'Care Rituals',    title:'Conditioning & Moisture' },
+  { num:'13', part:'Care Rituals',    title:'Scalp Massage & Stimulation' },
+  { num:'14', part:'Care Rituals',    title:'Oils, Herbs & Natural Ingredients' },
+  { num:'15', part:'Care Rituals',    title:'Heat Styling & Damage Prevention' },
+  { num:'16', part:'Colour & Beyond', title:'Hair Colour & the Scalp' },
+  { num:'17', part:'Colour & Beyond', title:'Chemical Treatments' },
+  { num:'18', part:'Colour & Beyond', title:'Protective Styling' },
+  { num:'19', part:'Colour & Beyond', title:'Hair Loss & Thinning' },
+  { num:'20', part:'Celebration',     title:'Celebrating Every Strand' },
+];
+
+const grid = document.getElementById('chapGrid');
+if(grid){
+  grid.innerHTML = chapters.map(c=>`
+    <div class="chap">
+      <div class="chap-num">${c.num}</div>
+      <div>
+        <div class="chap-part">${c.part}</div>
+        <div class="chap-title">${c.title}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── FAQ accordion ──
+document.querySelectorAll('.faq-q').forEach(q=>{
+  const open = ()=>{
+    const item = q.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen) item.classList.add('open');
+  };
+  q.addEventListener('click', open);
+  q.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); } });
+});
+
+// ── Stripe button placeholder ──
+document.getElementById('stripeBtn').addEventListener('click', e=>{
+  e.preventDefault();
+  alert('Connect your Stripe payment link here!\n\nReplace the href="#" on #stripeBtn with your Stripe Checkout URL.');
+});
+</script>
+</body>
+</html>

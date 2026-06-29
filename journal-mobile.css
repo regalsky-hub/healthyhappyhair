@@ -1,0 +1,328 @@
+/* ============================================================
+   Healthy Happy Hair — Mobile-responsive overrides
+   ============================================================ */
+
+/* ── Mobile top bar ── */
+.topbar {
+  display: none;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  height: 54px;
+  background: var(--paper);
+  border-bottom: 1px solid rgba(46,42,37,.09);
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.topbar__brand {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: .01em;
+  line-height: 1;
+}
+.topbar__brand .g  { color: var(--green); }
+.topbar__brand .tc { color: var(--terracotta); }
+.topbar__brand .o  { color: var(--orange); }
+.topbar__brand .t  { color: var(--brick); }
+.topbar__sub {
+  font-size: 9px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 1px;
+}
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.topbar__saved {
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  opacity: 0;
+  transition: opacity .3s;
+}
+.topbar__saved.visible { opacity: 1; }
+.topbar__saved .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+}
+.hamburger {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: 8px;
+  width: 38px; height: 38px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 4px; cursor: pointer; padding: 0;
+  transition: border-color .15s, background .15s;
+}
+.hamburger:hover { border-color: var(--orange); background: rgba(221,126,51,.06); }
+.hamburger span {
+  display: block; width: 16px; height: 1.5px;
+  background: var(--ink-soft); border-radius: 2px;
+  transition: transform .25s, opacity .25s, width .25s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+/* ── Drawer overlay ── */
+.drawer-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(46,42,37,.35);
+  z-index: 190;
+  opacity: 0;
+  pointer-events: none;   /* ← never block taps when invisible */
+  transition: opacity .25s;
+}
+.drawer-overlay.open {
+  opacity: 1;
+  pointer-events: auto;   /* ← only capture taps when actually visible */
+}
+
+/* ── Drawer nav ── */
+.drawer {
+  position: fixed;
+  top: 0; right: -100%;
+  width: min(320px, 88vw);
+  height: 100%;
+  background: var(--paper);
+  z-index: 195;
+  display: flex; flex-direction: column;
+  padding: 0;
+  transition: right .28s cubic-bezier(.3,.8,.3,1);
+  overflow: hidden;
+  border-left: 1px solid var(--line-soft);
+}
+.drawer.open { right: 0; }
+.drawer__head {
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--line-soft);
+  flex: 0 0 auto;
+}
+.drawer__brand { font-size: 18px; font-weight: 600; line-height: 1.1; }
+.drawer__brand .g  { color: var(--green); }
+.drawer__brand .tc { color: var(--terracotta); }
+.drawer__brand .o  { color: var(--orange); }
+.drawer__brand .t  { color: var(--brick); }
+.drawer__sub {
+  font-size: 9px; letter-spacing: .26em; text-transform: uppercase;
+  color: var(--ink-faint); margin-top: 3px;
+}
+.drawer__list {
+  flex: 1; overflow-y: auto; padding: 10px 14px;
+  -webkit-overflow-scrolling: touch;
+}
+.drawer__list::-webkit-scrollbar { width: 4px; }
+.drawer__list::-webkit-scrollbar-thumb { background: rgba(46,42,37,.12); border-radius: 2px; }
+.drawer__list a {
+  display: flex; gap: 11px; align-items: baseline;
+  text-decoration: none; color: var(--ink-soft);
+  font-size: 15px; padding: 10px 11px;
+  border-radius: 9px;
+  transition: background .15s, color .15s;
+  min-height: 44px;
+}
+.drawer__list a:hover  { background: rgba(168,67,43,.07); color: var(--ink); }
+.drawer__list a.active { background: rgba(168,67,43,.10); color: var(--ink); }
+.drawer__list a .n {
+  font-size: 11px; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; min-width: 18px;
+}
+.drawer__list a.active .n { color: var(--brick); }
+.drawer__foot {
+  flex: 0 0 auto;
+  padding: 14px 16px 28px;
+  border-top: 1px solid var(--line-soft);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.drawer__back {
+  font-size: 12px; letter-spacing: .04em; color: var(--ink-soft);
+  text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 0; transition: color .15s;
+}
+.drawer__back:hover { color: var(--brick); }
+.drawer__export {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 4px;
+}
+.drawer__export .btn-export {
+  font-size: 12px; padding: 10px 8px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  min-height: 44px;
+}
+.drawer__saved {
+  font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-faint); display: flex; align-items: center; gap: 7px;
+  padding-top: 4px;
+}
+.drawer__saved .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--green); opacity: .4; transition: opacity .2s;
+}
+.drawer__saved.flash .dot { opacity: 1; }
+
+/* ── iOS tap fix: non-button interactive elements need cursor:pointer ──
+   iOS Safari will not fire click on <span>/<div> without this.          */
+.chk,
+.face,
+.glass,
+.d,
+.slot {
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.pill {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 680px) {
+  /* Show mobile topbar, hide desktop rail */
+  .topbar   { display: flex; }
+  .rail     { display: none !important; }
+  .drawer-overlay { display: block; }
+
+  /* Full-bleed layout */
+  .app {
+    display: block;
+  }
+  .sheet {
+    padding: 16px 0 80px;
+    gap: 20px;
+  }
+
+  /* Fluid pages */
+  .page {
+    width: 100%;
+    min-height: unset;
+    border-radius: 0;
+    border-left: 0; border-right: 0;
+    padding: 20px 18px 28px;
+    box-shadow: 0 1px 0 rgba(255,255,255,.5) inset, 0 4px 14px -8px rgba(60,48,32,.2);
+  }
+
+  /* Page number */
+  .pageno { bottom: 10px; font-size: 9px; }
+
+  /* Title smaller */
+  .title { font-size: 21px; }
+  .title.sm { font-size: 18px; }
+
+  /* Two-col grids → single col */
+  .cols.c2,
+  .cols.c3 {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  /* Check grids → 2 col max */
+  .checkgrid[style*="repeat(3"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Pill sets wrap nicely */
+  .pillset { gap: 7px; }
+  .pill {
+    font-size: 13px;
+    padding: 8px 16px;
+    min-height: 40px;
+    display: inline-flex; align-items: center;
+  }
+
+  /* Touch-friendly checkboxes */
+  .chk {
+    font-size: 13px;
+    padding: 4px 0;
+    min-height: 36px;
+    align-items: center;
+  }
+  .chk .box {
+    width: 18px; height: 18px; border-radius: 4px; flex: none;
+  }
+  .chk.on .box::after {
+    left: 4px; top: 1px; width: 6px; height: 10px;
+  }
+
+  /* Lead text */
+  .lead { font-size: 14px; }
+
+  /* Bands */
+  .band { font-size: 10px; padding: 6px 10px; margin: 14px 0 7px; }
+
+  /* Write areas */
+  .write { font-size: 14px; line-height: 28px;
+    background-image: repeating-linear-gradient(var(--paper) 0 27px, var(--line) 27px 28px);
+  }
+
+  /* Field rows */
+  .fld { font-size: 14px; padding: 5px 2px; }
+  .fieldrow { gap: 7px; flex-wrap: wrap; }
+  .fieldrow .fld { min-width: 0; }
+
+  /* Scales */
+  .scale { gap: 10px; flex-wrap: wrap; }
+  .scale .face svg { width: 36px; height: 36px; }
+  .dotscale .d { width: 22px; height: 22px; font-size: 10px; }
+  .dots { gap: 8px; }
+
+  /* Water glasses */
+  .glass { width: 20px; height: 28px; }
+  .glasses { gap: 7px; }
+
+  /* Tables */
+  .tbl { font-size: 12px; }
+  .tbl td .cell { font-size: 12px; padding: 9px 7px; }
+
+  /* Cover page */
+  .cover .inner { gap: 4px; padding: 20px 0; }
+  .cover .cover-logo { width: 72%; }
+  .cover .ml { font-size: 11px; letter-spacing: .3em; }
+  .cover .tag { font-size: 13px; }
+
+  /* Row spacing */
+  .row { gap: 10px; }
+  .phead { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .dateline { font-size: 10px; }
+
+  /* Ruler — hide on tiny screens */
+  .ruler-wrap { flex-direction: column; }
+  .ruler { display: none; }
+
+  /* Add page picker */
+  .add-page-picker { width: calc(100vw - 36px); bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(8px) scale(.97); }
+  .add-page-picker.open { transform: translateX(-50%) translateY(0) scale(1); }
+  .add-page-picker__grid { grid-template-columns: 1fr 1fr; }
+
+  /* Face scale rows on mobile */
+  .row.between { flex-direction: column; align-items: flex-start; gap: 12px; }
+  #p8 .row.between { flex-direction: row; flex-wrap: wrap; }
+
+  /* Cycle pills wrap */
+  #p8 .row[style*="gap:24px"] { flex-direction: column; align-items: flex-start; gap: 10px; }
+  #p8 .row[style*="gap:8px"]  { flex-wrap: wrap; }
+}
+
+/* Slightly wider breakpoint — tablet */
+@media (min-width: 681px) and (max-width: 880px) {
+  .topbar { display: flex; }
+  .rail   { display: none !important; }
+  .drawer-overlay { display: block; }
+  .app    { display: block; }
+  .sheet  { padding: 32px 0 80px; align-items: center; gap: 26px; }
+  .page   {
+    width: min(var(--page-w), calc(100vw - 40px));
+    border-radius: 3px;
+  }
+}

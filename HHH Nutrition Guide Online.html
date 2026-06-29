@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="/favicon.png" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Nutrition Guide — Healthy Happy Hair</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --green:#557355; --green-d:#476048; --green-pale:#E4EBDB;
+  --gold:#D29A2E;  --gold-pale:#F4E8CC;
+  --orange:#DD7E33;--orange-pale:#F6E3D2;
+  --terra:#db6640; --brick:#A8432B; --brick-pale:#F3D8C2;
+  --ink:#2E2A25;   --ink-2:#6E655A; --ink-3:#9A9082;
+  --paper:#FCFAF6; --canvas:#F2EDE4; --canvas2:#EAE3D6;
+  --line:#D7CDBC;  --line-s:#E3DACB;
+  --r:"Newsreader",Georgia,serif;
+  --u:"Hanken Grotesk",system-ui,sans-serif;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{
+  margin:0;background:var(--paper);font-family:var(--r);color:var(--ink);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  line-height:1.65;
+}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+
+/* ── TOP BAR ── */
+.bar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(252,250,246,.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(46,42,37,.08);
+  padding:0 clamp(16px,4vw,40px);height:58px;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+}
+.bar-brand{font-family:var(--r);font-size:15px;font-weight:600;letter-spacing:.01em;}
+.bar-brand .g{color:var(--green);}
+.bar-brand .o{color:var(--orange);}
+.bar-brand .t{color:var(--brick);}
+.bar-brand small{
+  display:block;font-family:var(--u);font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-top:1px;
+}
+.bar-actions{display:flex;align-items:center;gap:8px;}
+.bar-btn{
+  font-family:var(--u);font-size:12px;font-weight:600;letter-spacing:.04em;
+  color:var(--ink-2);background:transparent;border:1px solid var(--line);
+  padding:8px 14px;border-radius:100px;cursor:pointer;transition:all .15s;
+}
+.bar-btn:hover{background:var(--canvas);color:var(--brick);border-color:var(--brick);}
+.menu-btn{display:none;width:38px;height:38px;border:1px solid var(--line);background:transparent;border-radius:8px;cursor:pointer;align-items:center;justify-content:center;color:var(--ink-2);}
+.menu-btn svg{width:18px;height:18px;}
+
+/* ── LAYOUT ── */
+.shell{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  max-width:1240px;margin:0 auto;
+  gap:clamp(20px,4vw,48px);
+  padding:0 clamp(16px,4vw,40px);
+}
+
+/* ── TOC SIDEBAR ── */
+.toc{
+  position:sticky;top:80px;align-self:start;
+  padding:32px 0;max-height:calc(100vh - 80px);
+  overflow-y:auto;font-family:var(--u);
+}
+.toc-label{
+  font-size:9px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--green);margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.toc-label::before{content:"";width:18px;height:2px;background:var(--green);border-radius:2px;}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:2px;}
+.toc-list a{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:7px 10px;border-radius:5px;
+  font-size:12.5px;line-height:1.4;color:var(--ink-2);
+  border-left:2px solid transparent;
+  transition:all .15s;
+}
+.toc-list a:hover{background:var(--canvas);color:var(--ink);}
+.toc-list a.active{color:var(--brick);border-left-color:var(--brick);background:var(--brick-pale);font-weight:600;}
+.toc-num{
+  font-family:var(--r);font-size:12px;font-style:italic;color:var(--ink-3);
+  min-width:18px;letter-spacing:-.02em;
+}
+.toc-list a.active .toc-num{color:var(--brick);}
+
+/* ── MAIN ── */
+main{padding:clamp(28px,5vw,56px) 0 80px;min-width:0;}
+.hero{
+  background:linear-gradient(160deg,var(--canvas) 0%,var(--orange-pale) 70%,var(--brick-pale) 100%);
+  border-radius:18px;padding:clamp(32px,5vw,56px);
+  margin-bottom:48px;position:relative;overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;top:24px;right:24px;
+  width:80px;height:80px;color:var(--green);opacity:.18;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80' fill='none' stroke='%23557355' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'><path d='M40 72V20'/><path d='M40 30c-9 0-15-5-16-13 9-1 15 4 16 13z'/><path d='M40 42c9 0 15-5 16-13-9-1-15 4-16 13z'/><path d='M40 52c-8 0-13-4-14-11 8-1 13 4 14 11z'/><path d='M40 20c0-6 3-11 8-13 1 6-2 11-8 13z'/><circle cx='40' cy='14' r='2.1' fill='%23557355' stroke='none'/></svg>") no-repeat center / contain;
+}
+.hero-super{
+  font-family:var(--u);font-size:10px;font-weight:700;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--green);
+  display:flex;align-items:center;gap:10px;margin-bottom:18px;
+}
+.hero-super::before{content:"";width:24px;height:2px;background:var(--green);border-radius:2px;}
+.hero h1{
+  font-family:var(--r);font-weight:500;
+  font-size:clamp(36px,5.5vw,60px);line-height:.98;
+  letter-spacing:-.025em;margin-bottom:14px;
+}
+.hero h1 .g{color:var(--green);}
+.hero h1 .o{color:var(--orange);}
+.hero h1 .t{color:var(--brick);}
+.hero-sub{
+  font-family:var(--r);font-style:italic;font-size:clamp(15px,1.6vw,18px);
+  line-height:1.55;color:var(--ink-2);max-width:42ch;
+}
+.hero-meta{
+  display:flex;flex-wrap:wrap;gap:18px;align-items:center;
+  margin-top:24px;padding-top:22px;border-top:1px solid rgba(168,67,43,.18);
+}
+.hero-meta-item{
+  font-family:var(--u);font-size:11px;color:var(--ink-2);
+  display:flex;align-items:center;gap:6px;letter-spacing:.04em;
+}
+.hero-meta-item svg{width:14px;height:14px;color:var(--green);}
+
+/* ── SECTIONS ── */
+section.s{padding:clamp(28px,4vw,48px) 0;border-bottom:1px solid var(--line-s);scroll-margin-top:80px;}
+section.s:last-of-type{border-bottom:none;}
+.s-label{
+  font-family:var(--u);font-size:10px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--green);
+  display:flex;align-items:center;gap:10px;margin-bottom:14px;
+}
+.s-label::before{content:"";width:24px;height:2px;background:var(--green);border-radius:2px;}
+.s h2{
+  font-family:var(--r);font-weight:500;font-size:clamp(26px,3.4vw,38px);
+  line-height:1.1;letter-spacing:-.02em;margin-bottom:14px;text-wrap:balance;
+}
+.s h2 em{color:var(--brick);font-style:italic;}
+.s-intro{font-size:clamp(15px,1.4vw,17px);line-height:1.7;color:var(--ink-2);margin-bottom:32px;max-width:60ch;}
+.s h3{
+  font-family:var(--r);font-weight:500;font-size:clamp(20px,2.2vw,24px);
+  line-height:1.25;letter-spacing:-.01em;margin:36px 0 12px;color:var(--ink);
+}
+.s h4{
+  font-family:var(--u);font-weight:700;font-size:10px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--green);
+  margin:24px 0 10px;display:flex;align-items:center;gap:10px;
+}
+.s h4::after{content:"";flex:1;height:1px;background:var(--line-s);}
+.s p{font-size:clamp(14px,1.2vw,16px);line-height:1.75;color:var(--ink);margin-bottom:14px;max-width:68ch;}
+.s p em{color:var(--green-d);}
+.s p b{color:var(--ink);font-weight:600;}
+
+/* ── NUTRIENT CARDS ── */
+.nut-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;margin:24px 0;
+}
+.nut-card{
+  background:var(--canvas);border:1px solid var(--line-s);
+  border-radius:10px;padding:18px 20px;position:relative;overflow:hidden;
+  transition:transform .18s,box-shadow .18s;
+}
+.nut-card:hover{transform:translateY(-2px);box-shadow:0 12px 30px -10px rgba(46,40,30,.15);}
+.nut-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;border-radius:10px 10px 0 0;}
+.nut-card.vit::before{background:linear-gradient(90deg,var(--green),var(--gold));}
+.nut-card.min::before{background:linear-gradient(90deg,var(--terra),var(--brick));}
+.nut-card.ess::before{background:linear-gradient(90deg,var(--gold),var(--orange));}
+.nut-name{
+  font-family:var(--u);font-weight:700;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink);margin-bottom:8px;
+  display:flex;align-items:center;gap:8px;
+}
+.nut-name .ico-wrap{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:24px;height:24px;border-radius:50%;background:var(--paper);color:var(--green);
+}
+.nut-card.min .nut-name .ico-wrap{color:var(--brick);}
+.nut-card.ess .nut-name .ico-wrap{color:var(--gold);}
+.nut-name .ico-wrap svg{width:14px;height:14px;}
+.nut-role{font-size:13.5px;line-height:1.55;color:var(--ink-2);margin-bottom:8px;}
+.nut-source{font-family:var(--u);font-size:11px;color:var(--green-d);font-weight:600;letter-spacing:.02em;}
+.nut-caution{font-family:var(--u);font-size:10.5px;color:var(--brick);margin-top:6px;font-weight:600;display:flex;align-items:center;gap:5px;}
+.nut-caution::before{content:"!";display:inline-flex;width:14px;height:14px;border-radius:50%;background:var(--brick);color:#fff;align-items:center;justify-content:center;font-size:9px;font-weight:700;}
+
+/* ── CALLOUTS ── */
+.callout{
+  position:relative;margin:24px 0;padding:18px 22px;border-radius:8px;
+  background:var(--green-pale);border:1px solid var(--line-s);
+  max-width:68ch;
+}
+.callout::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);border-radius:3px 0 0 3px;}
+.callout.gold{background:var(--gold-pale);}.callout.gold::before{background:var(--gold);}
+.callout.brick{background:var(--brick-pale);}.callout.brick::before{background:var(--brick);}
+.callout.orange{background:var(--orange-pale);}.callout.orange::before{background:var(--orange);}
+.clabel{
+  font-family:var(--u);font-weight:700;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--green);
+  display:flex;align-items:center;gap:8px;margin-bottom:8px;
+}
+.callout.gold .clabel{color:#a07818;}
+.callout.brick .clabel{color:var(--brick);}
+.callout.orange .clabel{color:var(--terra);}
+.clabel svg{width:14px;height:14px;}
+.callout p{font-size:14px;line-height:1.7;color:var(--ink-2);margin:0;}
+
+/* ── TABLES ── */
+.tw{overflow-x:auto;margin:24px 0;border-radius:8px;border:1px solid var(--line-s);}
+table.t{width:100%;border-collapse:collapse;font-size:13.5px;min-width:520px;}
+table.t th{
+  font-family:var(--u);font-weight:700;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:#fff;background:var(--green-d);
+  padding:14px 16px;text-align:left;
+}
+table.t td{padding:14px 16px;border-bottom:1px solid var(--line-s);vertical-align:top;line-height:1.55;}
+table.t tr:last-child td{border-bottom:none;}
+table.t tr:nth-child(odd) td{background:var(--canvas);}
+table.t tr:nth-child(even) td{background:#fff;}
+table.t .day{font-family:var(--r);font-style:italic;font-weight:500;font-size:15px;color:var(--brick);}
+table.t .focus{font-weight:600;color:var(--ink);}
+table.t .benefit{color:var(--green-d);font-style:italic;}
+
+/* swap table */
+.swap{width:100%;border-collapse:collapse;font-size:14px;border-radius:8px;overflow:hidden;border:1px solid var(--line-s);}
+.swap th{font-family:var(--u);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:14px 16px;text-align:left;}
+.swap th:first-child{background:var(--brick-pale);color:var(--brick);}
+.swap th:last-child{background:var(--green-pale);color:var(--green-d);}
+.swap td{padding:14px 16px;border-bottom:1px solid var(--line-s);vertical-align:top;line-height:1.55;}
+.swap td:first-child{background:#fdf6f2;color:var(--ink-2);}
+.swap td:last-child{background:#f4f8f1;color:var(--green-d);font-weight:500;}
+.swap tr:last-child td{border-bottom:none;}
+
+/* superfoods */
+.super-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:24px 0;}
+.super-item{background:var(--canvas);border:1px solid var(--line-s);border-radius:8px;padding:14px 16px;transition:transform .15s;}
+.super-item:hover{transform:translateY(-2px);}
+.super-region{font-family:var(--u);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:5px;}
+.super-name{font-family:var(--r);font-size:18px;font-weight:500;color:var(--ink);margin-bottom:5px;}
+.super-desc{font-size:12.5px;line-height:1.55;color:var(--ink-2);}
+
+/* cycle cards */
+.cycle-grid{display:flex;flex-direction:column;gap:14px;margin:24px 0;max-width:780px;}
+.cycle-card{
+  background:var(--canvas);border:1px solid var(--line-s);
+  border-radius:10px;padding:20px 24px;
+  display:grid;grid-template-columns:130px 1fr;gap:24px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.cycle-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;}
+.cycle-card.w1::before{background:var(--brick);}
+.cycle-card.w2::before{background:var(--gold);}
+.cycle-card.w3::before{background:var(--green);}
+.cycle-card.w4::before{background:var(--brick);}
+.cycle-week{text-align:center;}
+.cycle-num{font-family:var(--r);font-style:italic;font-size:32px;line-height:1;}
+.cycle-card.w1 .cycle-num{color:var(--brick);}
+.cycle-card.w2 .cycle-num{color:var(--gold);}
+.cycle-card.w3 .cycle-num{color:var(--green);}
+.cycle-card.w4 .cycle-num{color:var(--brick);}
+.cycle-phase{font-family:var(--u);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-top:4px;}
+.cycle-body h5{font-family:var(--u);font-size:13px;font-weight:700;letter-spacing:.04em;margin-bottom:5px;}
+.cycle-body p{font-size:13.5px;line-height:1.6;color:var(--ink-2);margin:0;}
+
+/* recipes */
+.recipe{
+  background:var(--canvas);border:1px solid var(--line-s);
+  border-radius:10px;padding:22px 26px;margin:18px 0;position:relative;
+  border-left:3px solid var(--green);
+}
+.recipe.r2{border-left-color:var(--gold);}
+.recipe.r3{border-left-color:var(--brick);}
+.recipe-tag{
+  font-family:var(--u);font-size:9px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--green);margin-bottom:6px;
+}
+.recipe.r2 .recipe-tag{color:#a07818;}
+.recipe.r3 .recipe-tag{color:var(--brick);}
+.recipe-title{font-family:var(--r);font-size:22px;font-weight:500;line-height:1.2;margin-bottom:4px;}
+.recipe-sub{font-style:italic;font-size:13.5px;color:var(--ink-2);margin-bottom:14px;}
+.recipe ul{list-style:none;padding:0;margin:0 0 12px;}
+.recipe ul li{position:relative;padding-left:22px;margin:8px 0;font-size:14px;line-height:1.55;color:var(--ink-2);}
+.recipe ul li::before{
+  content:"";position:absolute;left:0;top:8px;
+  width:8px;height:8px;transform:rotate(45deg);
+  border:1.4px solid var(--green);
+}
+.recipe.r2 ul li::before{border-color:var(--gold);}
+.recipe.r3 ul li::before{border-color:var(--brick);}
+.recipe-note{font-family:var(--u);font-size:11.5px;color:var(--ink-3);font-style:italic;}
+
+/* checklist */
+.checklist{display:flex;flex-direction:column;gap:8px;margin:24px 0;max-width:560px;}
+.chk-row{
+  display:flex;align-items:flex-start;gap:12px;cursor:pointer;
+  padding:12px 16px;background:var(--canvas);border:1px solid var(--line-s);
+  border-radius:8px;font-size:14px;line-height:1.55;color:var(--ink-2);
+  transition:background .15s;-webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+.chk-row:hover{background:var(--paper);}
+.chk-box{
+  width:20px;height:20px;border:1.6px solid var(--green);
+  border-radius:5px;flex-shrink:0;margin-top:1px;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s;
+}
+.chk-box svg{width:13px;height:13px;color:#fff;opacity:0;transition:opacity .15s;}
+.chk-row.done .chk-box{background:var(--green);}
+.chk-row.done .chk-box svg{opacity:1;}
+.chk-row.done{text-decoration:line-through;color:var(--ink-3);}
+
+/* CTA */
+.cta{
+  background:linear-gradient(135deg,var(--canvas),var(--orange-pale));
+  border-radius:14px;padding:clamp(28px,4vw,42px);margin:48px 0 0;
+  text-align:center;border:1px solid var(--line-s);
+}
+.cta h3{font-family:var(--r);font-size:clamp(22px,3vw,30px);font-weight:500;line-height:1.2;margin-bottom:10px;}
+.cta p{font-size:14.5px;color:var(--ink-2);max-width:50ch;margin:0 auto 22px;}
+.cta a{
+  display:inline-block;font-family:var(--u);font-size:14px;font-weight:700;
+  letter-spacing:.04em;background:var(--brick);color:#fff;
+  padding:14px 30px;border-radius:100px;text-decoration:none;
+  transition:background .15s,transform .12s;
+  box-shadow:0 8px 24px -6px rgba(168,67,43,.4);
+}
+.cta a:hover{background:var(--terra);transform:translateY(-2px);}
+
+/* footer */
+footer{background:var(--ink);color:rgba(255,255,255,.6);padding:36px clamp(16px,4vw,40px);text-align:center;}
+footer .fb{font-family:var(--r);font-size:18px;font-weight:500;color:#fff;}
+footer .fb .g{color:#8dba7b;}footer .fb .o{color:#e8a05c;}footer .fb .t{color:#cf7455;}
+footer p{font-family:var(--u);font-size:11px;letter-spacing:.04em;margin-top:6px;}
+
+/* ── DRAWER (mobile TOC) ── */
+.drawer{
+  position:fixed;top:0;right:-340px;bottom:0;width:300px;
+  background:var(--paper);z-index:200;
+  box-shadow:-20px 0 60px -10px rgba(0,0,0,.25);
+  transition:right .3s;padding:24px 22px;overflow-y:auto;
+}
+.drawer.open{right:0;}
+.drawer-bg{
+  position:fixed;inset:0;background:rgba(46,42,37,.4);z-index:150;
+  opacity:0;pointer-events:none;transition:opacity .2s;
+}
+.drawer-bg.open{opacity:1;pointer-events:auto;}
+.drawer-close{
+  position:absolute;top:14px;right:14px;width:36px;height:36px;
+  border:none;background:var(--canvas);border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;color:var(--ink-2);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width:880px){
+  .shell{grid-template-columns:1fr;padding:0 18px;}
+  .toc{display:none;}
+  .menu-btn{display:flex;}
+  .bar-btn{display:none;}
+}
+@media (max-width:480px){
+  .nut-grid{grid-template-columns:1fr;}
+  .cycle-card{grid-template-columns:80px 1fr;gap:16px;padding:16px;}
+  .cycle-num{font-size:24px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── TOP BAR ── -->
+<div class="bar">
+  <div class="bar-brand">
+    <span class="g">Healthy</span> <span class="o">Happy</span> <span class="t">Hair</span>
+    <small>Nutrition Guide</small>
+  </div>
+  <div class="bar-actions">
+    <a class="bar-btn" href="Healthy Happy Hair.html">← Back to Library</a>
+    <a class="bar-btn" href="HHH Nutrition Guide.html">Download PDF</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open table of contents">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="shell">
+
+  <!-- ── TOC ── -->
+  <aside class="toc" id="tocAside">
+    <div class="toc-label">Contents</div>
+    <ul class="toc-list" id="tocList">
+      <li><a href="#intro"><span class="toc-num">00</span>Food Is Your First Medicine</a></li>
+      <li><a href="#vitamins"><span class="toc-num">01</span>Vitamins for Hair Health</a></li>
+      <li><a href="#minerals"><span class="toc-num">02</span>Minerals That Strengthen</a></li>
+      <li><a href="#macros"><span class="toc-num">03</span>Protein, Fats &amp; Hydration</a></li>
+      <li><a href="#plan"><span class="toc-num">04</span>Your 7-Day Plan</a></li>
+      <li><a href="#saboteurs"><span class="toc-num">05</span>Foods to Swap Out</a></li>
+      <li><a href="#superfoods"><span class="toc-num">06</span>Global Hair Superfoods</a></li>
+      <li><a href="#lifestyle"><span class="toc-num">07</span>Lifestyle Amplifiers</a></li>
+      <li><a href="#bloodwork"><span class="toc-num">08</span>Beyond "In Range" Bloodwork</a></li>
+      <li><a href="#symptoms"><span class="toc-num">09</span>Symptom Decoder</a></li>
+      <li><a href="#timing"><span class="toc-num">10</span>Nutrient Timing &amp; Pairing</a></li>
+      <li><a href="#cycle"><span class="toc-num">11</span>Cycle-Aware Nutrition</a></li>
+      <li><a href="#recipes"><span class="toc-num">12</span>Three Hair Tonics</a></li>
+      <li><a href="#checklist"><span class="toc-num">13</span>Daily Checklist</a></li>
+    </ul>
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <main>
+    <div class="hero">
+      <div class="hero-super">Healthy Happy Hair · Companion Guide</div>
+      <h1><span class="g">Nutri</span>tion <span class="o">Guide</span><br>for <span class="t">Healthy Hair</span></h1>
+      <p class="hero-sub">Fuel your follicles, nourish your scalp, and build the internal foundation every strand needs to thrive.</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          25 min read
+        </div>
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 19c0-7 5-13 14-14 0 9-5 14-14 14z"/><path d="M5 19c3.5-4 6-6 10-8"/></svg>
+          14 sections
+        </div>
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          by Aida Sol
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ INTRO ══ -->
+    <section class="s" id="intro">
+      <div class="s-label">Introduction</div>
+      <h2>Food Is Your Hair's<br><em>First Medicine</em></h2>
+      <p class="s-intro">The connection between nutrition and hair health runs deep, yet it is often underestimated. While external products can temporarily enhance appearance, lasting vitality begins from within.</p>
+      <p>Your hair is more than a style statement — it reflects your overall nourishment. When key nutrients are lacking or when digestion and absorption are compromised, hair is often among the first tissues to show it. Dullness, breakage, increased shedding, or slower growth can all signal that the body is not receiving what it needs.</p>
+      <p>Nutrition is not only about <b>what</b> you eat, but also about how well your body can <b>utilise</b> it. When digestion functions efficiently and the body is not under constant stress, nutrients are absorbed and delivered to the scalp more effectively.</p>
+      <div class="callout gold">
+        <div class="clabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Key Principle</div>
+        <p>Hair reflects what your body has been building over time — not what you ate yesterday. Dietary changes typically take <b>3–6 months</b> to become visible, because nutrients influence the follicle during the anagen (growth) phase. Be patient and consistent.</p>
+      </div>
+    </section>
+
+    <!-- ══ VITAMINS ══ -->
+    <section class="s" id="vitamins">
+      <div class="s-label">Section One</div>
+      <h2>Vitamins for <em>Hair Health</em></h2>
+      <p class="s-intro">Vitamins act as cofactors in the enzymatic and cellular processes that support hair follicle activity. Together with minerals, they fuel the biological pathways that produce strong, resilient hair.</p>
+      <div class="nut-grid">
+        <div class="nut-card vit">
+          <div class="nut-name"><span class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 16l8-8M5 19l3-3M19 5l-3 3M8 16c-2 0-4 1-5 3 2-1 4 0 4 0M16 8c0-2 1-4 3-5-1 2 0 4 0 4"/></svg></span>Vitamin A</div>
+          <div class="nut-role">Supports healthy sebum production and scalp hydration.</div>
+          <div class="nut-source">Carrots, sweet potatoes, spinach, kale</div>
+          <div class="nut-caution">Excess (&gt;10,000 IU/day) may cause hair loss</div>
+        </div>
+        <div class="nut-card vit">
+          <div class="nut-name"><span class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-4 0-7 5-7 11a7 7 0 0 0 14 0c0-6-3-11-7-11z"/></svg></span>Biotin (B7)</div>
+          <div class="nut-role">Supports keratin production — the structural protein of hair.</div>
+          <div class="nut-source">Cooked eggs, almonds, sweet potatoes</div>
+          <div class="nut-caution">Most effective when deficiency is present</div>
+        </div>
+        <div class="nut-card vit">
+          <div class="nut-name"><span class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-7 5-13 14-14 0 9-5 14-14 14z"/></svg></span>B Complex</div>
+          <div class="nut-role">B2, B3, B9, B12 support cellular turnover, follicle function, and natural pigmentation.</div>
+          <div class="nut-source">Leafy greens, legumes, salmon, eggs</div>
+        </div>
+        <div class="nut-card vit">
+          <div class="nut-name"><span class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg></span>Vitamin C</div>
+          <div class="nut-role">Enhances iron absorption and supports collagen formation, strengthening the hair shaft.</div>
+          <div class="nut-source">Citrus, bell peppers, strawberries, broccoli</div>
+        </div>
+        <div class="nut-card vit">
+          <div class="nut-name"><span class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></span>Vitamin D</div>
+          <div class="nut-role">Supports follicle cycling and activation. Deficiency is commonly observed in thinning hair.</div>
+          <div class="nut-source">Sun exposure, fatty fish, fortified plant milks</div>
+        </div>
+        <div class="nut-card vit">
+          <div class="nut-name"><span class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-4 0-7 4-7 9s3 9 7 9 7-4 7-9-3-9-7-9z"/><circle cx="12" cy="14" r="3"/></svg></span>Vitamin E</div>
+          <div class="nut-role">Protects the scalp from oxidative stress and supports healthy circulation.</div>
+          <div class="nut-source">Almonds, sunflower seeds, spinach, avocados</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="clabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 19c0-7 5-13 14-14 0 9-5 14-14 14z"/><path d="M5 19c3.5-4 6-6 10-8"/></svg>Practical Tip</div>
+        <p>B vitamins work synergistically. Aim for dietary balance first, or choose a well-formulated B-complex if additional support is needed. Pair iron-rich meals with vitamin C — for example, spinach with fresh lemon juice — to maximise absorption.</p>
+      </div>
+    </section>
+
+    <!-- ══ MINERALS ══ -->
+    <section class="s" id="minerals">
+      <div class="s-label">Section Two</div>
+      <h2>Minerals That <em>Strengthen</em></h2>
+      <p class="s-intro">Minerals are essential for the structural integrity of hair, oxygen delivery to follicles, and the regulation of oil glands. Even mild deficiencies can lead to visible changes in density and texture.</p>
+      <div class="nut-grid">
+        <div class="nut-card min">
+          <div class="nut-name"><span class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14c0-5 4-9 9-9s7 3 7 6-2 5-4 5-3-2-3-3"/></svg></span>Iron</div>
+          <div class="nut-role">Enables red blood cells to deliver oxygen to hair follicles. Most common contributor to shedding in women.</div>
+          <div class="nut-source">Red meat, liver, oysters, lentils, spinach + vitamin C</div>
+          <div class="nut-caution">Supplement only when deficiency confirmed</div>
+        </div>
+        <div class="nut-card min">
+          <div class="nut-name"><span class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4c5 0 9 4 9 8s-4 8-9 8-9-4-9-8 4-8 9-8z"/><path d="M5 12h14"/></svg></span>Zinc</div>
+          <div class="nut-role">Supports follicle tissue repair and regulates oil gland function.</div>
+          <div class="nut-source">Oysters, pumpkin seeds, dark chocolate</div>
+          <div class="nut-caution">Excess may worsen hair loss</div>
+        </div>
+        <div class="nut-card min">
+          <div class="nut-name"><span class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-7 5-13 14-14 0 9-5 14-14 14z"/></svg></span>Magnesium</div>
+          <div class="nut-role">Supports protein synthesis and helps reduce stress-related hair shedding.</div>
+          <div class="nut-source">Spinach, almonds, cashews, dark chocolate</div>
+        </div>
+        <div class="nut-card min">
+          <div class="nut-name"><span class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="5" ry="8"/><path d="M12 4v16"/></svg></span>Selenium</div>
+          <div class="nut-role">Supports antioxidant defences and may contribute to pigment preservation.</div>
+          <div class="nut-source">Brazil nuts (1–2/day), tuna, eggs, brown rice</div>
+          <div class="nut-caution">Excess can cause hair loss</div>
+        </div>
+        <div class="nut-card min">
+          <div class="nut-name"><span class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="16" rx="1"/><path d="M9 4v16M14 4v16M5 9h14M5 14h14"/></svg></span>Copper</div>
+          <div class="nut-role">Supports melanin production and collagen/elastin formation. Deficiency linked to premature greying.</div>
+          <div class="nut-source">Shellfish, seeds, nuts, dark chocolate</div>
+        </div>
+        <div class="nut-card min">
+          <div class="nut-name"><span class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V4"/></svg></span>Silica</div>
+          <div class="nut-role">Supports connective tissue strength and hair resilience.</div>
+          <div class="nut-source">Whole grains, green beans, bananas, horsetail tea</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ MACROS ══ -->
+    <section class="s" id="macros">
+      <div class="s-label">Section Three</div>
+      <h2>Protein, Fats &amp; <em>Hydration</em></h2>
+      <p class="s-intro">Macronutrients provide the energy and structural components required for hair formation. Proteins supply the building blocks of keratin; fats support hormone balance and cellular function.</p>
+      <h3>Protein — The Structural Foundation</h3>
+      <p>Hair is composed primarily of keratin. Inadequate intake diverts the body's resources away from hair growth toward vital organs. Aim for approximately <b>20–30 grams of protein per meal</b>.</p>
+      <div class="nut-grid">
+        <div class="nut-card ess">
+          <div class="nut-name">Complete Proteins</div>
+          <div class="nut-role">All essential amino acids in one source.</div>
+          <div class="nut-source">Eggs · Chicken · Fish · Quinoa</div>
+        </div>
+        <div class="nut-card ess">
+          <div class="nut-name">Plant Proteins</div>
+          <div class="nut-role">Combine grains and legumes for a full amino acid profile.</div>
+          <div class="nut-source">Lentils · Chickpeas · Tofu · Tempeh</div>
+        </div>
+      </div>
+      <h3>Omega-3 Fatty Acids — Scalp Hydration</h3>
+      <p>Omega-3s help reduce inflammation and maintain scalp hydration from within. Adding flaxseed oil to smoothies is a simple daily habit.</p>
+      <div class="nut-grid">
+        <div class="nut-card ess">
+          <div class="nut-name">Marine Sources</div>
+          <div class="nut-role">Anti-inflammatory; directly bioavailable EPA and DHA.</div>
+          <div class="nut-source">Wild salmon, sardines, mackerel</div>
+        </div>
+        <div class="nut-card ess">
+          <div class="nut-name">Plant Sources</div>
+          <div class="nut-role">ALA (converted to EPA/DHA). Algae oil is the most direct plant-based source.</div>
+          <div class="nut-source">Chia seeds, flaxseed oil, algae oil, walnuts</div>
+        </div>
+      </div>
+      <div class="callout orange">
+        <div class="clabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Hydration</div>
+        <p>Hair contains significant water content — dehydration contributes to dryness, frizz, and fragility. <b>Aim to drink roughly half your body weight (lbs) in ounces per day.</b> Infuse water with lemon, cucumber, or mint to encourage regular intake.</p>
+      </div>
+    </section>
+
+    <!-- ══ 7-DAY PLAN ══ -->
+    <section class="s" id="plan">
+      <div class="s-label">Section Four</div>
+      <h2>Your 7-Day <em>Nutrition Plan</em></h2>
+      <p class="s-intro">This plan is not about restriction — it is about <em>addition</em>. Each day highlights one nutritional focus to weave into your existing meals. Repeat the cycle each week.</p>
+      <div class="tw">
+        <table class="t">
+          <thead><tr><th>Day</th><th>Focus</th><th>What to Add</th><th>Hair Benefit</th></tr></thead>
+          <tbody>
+            <tr><td class="day">Day 1</td><td class="focus">Protein Power</td><td>Eggs, chicken, fish, or lentils</td><td class="benefit">Stronger, more resilient hair</td></tr>
+            <tr><td class="day">Day 2</td><td class="focus">Healthy Fats</td><td>Avocado, nuts, or seeds</td><td class="benefit">Enhances shine, scalp hydration</td></tr>
+            <tr><td class="day">Day 3</td><td class="focus">Iron &amp; Greens</td><td>Spinach, kale, or leafy greens + lemon</td><td class="benefit">Better oxygen to follicles</td></tr>
+            <tr><td class="day">Day 4</td><td class="focus">Omega-3 Boost</td><td>Salmon, sardines, chia or flax seeds</td><td class="benefit">Reduces dryness</td></tr>
+            <tr><td class="day">Day 5</td><td class="focus">Vitamin E</td><td>Almonds or olive oil</td><td class="benefit">Protects from oxidative stress</td></tr>
+            <tr><td class="day">Day 6</td><td class="focus">Beta Carotene</td><td>Sweet potatoes, carrots, pumpkin</td><td class="benefit">Natural sebum balance</td></tr>
+            <tr><td class="day">Day 7</td><td class="focus">Hydration &amp; Minerals</td><td>Water, pumpkin seeds, chickpeas</td><td class="benefit">Follicle health &amp; density</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <div class="clabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 19c0-7 5-13 14-14 0 9-5 14-14 14z"/><path d="M5 19c3.5-4 6-6 10-8"/></svg>Remember</div>
+        <p>Rotate this plan weekly. Consistent, varied nourishment across all seven days creates the steady nutritional environment your follicles need to thrive across each growth cycle.</p>
+      </div>
+    </section>
+
+    <!-- ══ SABOTEURS ══ -->
+    <section class="s" id="saboteurs">
+      <div class="s-label">Section Five</div>
+      <h2>Foods That <em>Sabotage Your Strands</em></h2>
+      <p class="s-intro">Some everyday foods quietly work against your hair goals. Swapping them out is one of the most effective changes you can make.</p>
+      <div class="tw">
+        <table class="swap">
+          <thead><tr><th>Avoid or Limit</th><th>Better Choice</th></tr></thead>
+          <tbody>
+            <tr><td>Sugar &amp; sweetened drinks — spikes insulin, drives inflammation</td><td>Sparkling water with lemon &amp; lime</td></tr>
+            <tr><td>Processed carbs (white bread, pastries)</td><td>Quinoa, oats, or sweet potatoes</td></tr>
+            <tr><td>High-mercury fish (swordfish, frequent tuna)</td><td>Rotate with sardines, mackerel, salmon</td></tr>
+            <tr><td>Trans fats &amp; poor-quality saturated fats</td><td>Avocado, olive oil, nuts, seeds</td></tr>
+            <tr><td>Chips &amp; salty snacks</td><td>Roasted chickpeas — protein + zinc</td></tr>
+            <tr><td>Unregulated supplements</td><td>Test first, then supplement only what's needed</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout gold">
+        <div class="clabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Gut Health Connection</div>
+        <p>A thriving gut microbiome plays an important role in how your scalp behaves. Fermented foods — yogurt, kefir, sauerkraut, kimchi — help nourish beneficial bacteria, supporting stronger follicles and a calmer scalp.</p>
+      </div>
+    </section>
+
+    <!-- ══ SUPERFOODS ══ -->
+    <section class="s" id="superfoods">
+      <div class="s-label">Section Six</div>
+      <h2>Global Hair <em>Superfoods</em></h2>
+      <p class="s-intro">Across cultures, traditional diets are filled with nutrient-dense foods that support hair growth and resilience. Here are globally loved hair superfoods by region.</p>
+      <div class="super-grid">
+        <div class="super-item"><div class="super-region">South Asia</div><div class="super-name">Amla</div><div class="super-desc">Rich in vitamin C and antioxidants; strengthens hair and delays greying.</div></div>
+        <div class="super-item"><div class="super-region">Africa / Global</div><div class="super-name">Moringa</div><div class="super-desc">High in iron, zinc, and amino acids for healthy growth.</div></div>
+        <div class="super-item"><div class="super-region">South Asia</div><div class="super-name">Fenugreek</div><div class="super-desc">Packed with protein and nicotinic acid; reduces hair fall.</div></div>
+        <div class="super-item"><div class="super-region">Middle East</div><div class="super-name">Black Seed</div><div class="super-desc">Anti-inflammatory; nourishing to the scalp and follicles.</div></div>
+        <div class="super-item"><div class="super-region">East Asia</div><div class="super-name">Seaweed</div><div class="super-desc">High in iodine, iron, omega-3s. Caution with thyroid conditions.</div></div>
+        <div class="super-item"><div class="super-region">East Asia</div><div class="super-name">Ginseng</div><div class="super-desc">Improves scalp circulation and stimulates hair follicles.</div></div>
+        <div class="super-item"><div class="super-region">West Africa</div><div class="super-name">Baobab</div><div class="super-desc">Rich in vitamin C, antioxidants, and omega fatty acids.</div></div>
+        <div class="super-item"><div class="super-region">Africa / Caribbean</div><div class="super-name">Hibiscus</div><div class="super-desc">Strengthens hair, reduces breakage, adds shine.</div></div>
+        <div class="super-item"><div class="super-region">Mediterranean</div><div class="super-name">Olive Oil</div><div class="super-desc">Moisturises hair and reduces inflammation on the scalp.</div></div>
+        <div class="super-item"><div class="super-region">Mediterranean</div><div class="super-name">Rosemary</div><div class="super-desc">Boosts scalp circulation and follicle stimulation.</div></div>
+        <div class="super-item"><div class="super-region">Americas</div><div class="super-name">Chia Seeds</div><div class="super-desc">Protein, zinc, and omega-3s for strong, healthy hair.</div></div>
+        <div class="super-item"><div class="super-region">Australia</div><div class="super-name">Kakadu Plum</div><div class="super-desc">Exceptionally high in vitamin C — promotes collagen.</div></div>
+      </div>
+    </section>
+
+    <!-- ══ LIFESTYLE ══ -->
+    <section class="s" id="lifestyle">
+      <div class="s-label">Section Seven</div>
+      <h2>Lifestyle Habits That <em>Amplify Nutrition</em></h2>
+      <p class="s-intro">Nutrition is only half the story. How your body absorbs and uses what you eat is shaped by your daily habits. These four pillars work alongside your diet to maximise results.</p>
+      <h3>Stress Management</h3>
+      <p>Elevated cortisol can divert nutrients away from hair growth and increase magnesium demand. Even short periods of rest, breathwork, or nature walks can begin to rebalance stress hormones and support follicle activity.</p>
+      <h3>Gentle Movement</h3>
+      <p>Regular, gentle activity — walking, yoga, swimming — supports circulation, delivering oxygen and nutrients to the scalp more efficiently. Avoid excessive, high-intensity training when nutritional reserves are low.</p>
+      <h3>Restorative Sleep</h3>
+      <p>Deep sleep supports cellular repair and follicle recovery. Sleeping with hair loosely secured, using a silk pillowcase, and avoiding wet hair at night reduces breakage and scalp irritation.</p>
+      <h3>Mindful Eating</h3>
+      <p>Rushed meals and eating under stress compromise digestion and absorption. Slow meals, taken without screens, allow digestive enzymes to work properly — meaning more nutrients reach your scalp.</p>
+    </section>
+
+    <!-- ══ BONUS: BLOODWORK ══ -->
+    <section class="s" id="bloodwork">
+      <div class="s-label">Bonus One</div>
+      <h2>Beyond "In Range" <em>Bloodwork</em></h2>
+      <p class="s-intro">When you ask for blood tests, most labs report whether you're "in range" — but ranges are built for disease detection, not optimal health. For hair, the difference between <em>just enough</em> and <em>optimal</em> is everything.</p>
+      <h3>The Marker Everyone Misses: Ferritin</h3>
+      <p>Standard iron tests can look normal while your ferritin — the body's iron storage protein — is critically low. Hair follicles are among the first tissues to lose iron when storage is depleted. <b>For hair, ferritin should be above 70 ng/mL.</b> Below 40 is associated with shedding and stalled regrowth.</p>
+      <div class="tw">
+        <table class="t">
+          <thead><tr><th>Marker</th><th>Standard Range</th><th>Optimal for Hair</th></tr></thead>
+          <tbody>
+            <tr><td class="focus">Ferritin</td><td>15–150 ng/mL</td><td class="benefit">70–100 ng/mL</td></tr>
+            <tr><td class="focus">Vitamin D (25-OH)</td><td>30–100 ng/mL</td><td class="benefit">50–80 ng/mL</td></tr>
+            <tr><td class="focus">Vitamin B12</td><td>200–900 pg/mL</td><td class="benefit">500+ pg/mL</td></tr>
+            <tr><td class="focus">Zinc</td><td>60–120 mcg/dL</td><td class="benefit">90–110 mcg/dL</td></tr>
+            <tr><td class="focus">Folate</td><td>3–20 ng/mL</td><td class="benefit">10+ ng/mL</td></tr>
+            <tr><td class="focus">TSH (Thyroid)</td><td>0.4–4.5 mIU/L</td><td class="benefit">1.0–2.0 mIU/L</td></tr>
+            <tr><td class="focus">Free T3</td><td>2.0–4.4 pg/mL</td><td class="benefit">3.0–4.0 pg/mL</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout brick">
+        <div class="clabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 19c0-7 5-13 14-14 0 9-5 14-14 14z"/></svg>Test, Don't Guess</div>
+        <p>Bring this list to your next bloodwork appointment. Always supplement based on testing, not symptoms alone — excess iron, zinc, or vitamin A can <b>worsen</b> hair loss.</p>
+      </div>
+    </section>
+
+    <!-- ══ BONUS: SYMPTOM DECODER ══ -->
+    <section class="s" id="symptoms">
+      <div class="s-label">Bonus Two</div>
+      <h2>Your Hair Is Speaking — <em>Listen Closely</em></h2>
+      <p class="s-intro">Hair changes are often the body's earliest warning signs. Each pattern points to a specific imbalance — learning to read them means you can intervene before deficiency becomes loss.</p>
+      <div class="tw">
+        <table class="t">
+          <thead><tr><th>What You're Noticing</th><th>What It May Mean</th><th>First Step</th></tr></thead>
+          <tbody>
+            <tr><td class="focus">Diffuse shedding all over</td><td>Low ferritin, thyroid, or stress</td><td class="benefit">Test ferritin + TSH</td></tr>
+            <tr><td class="focus">Brittle, snapping strands</td><td>Low protein or biotin</td><td class="benefit">20–30g protein per meal</td></tr>
+            <tr><td class="focus">Dry, dull, lifeless</td><td>Omega-3 deficiency, dehydration</td><td class="benefit">Add fatty fish + water</td></tr>
+            <tr><td class="focus">Premature greying</td><td>Copper, B12, or oxidative stress</td><td class="benefit">Test B12, eat seeds &amp; nuts</td></tr>
+            <tr><td class="focus">Slow growth</td><td>Low vitamin D or zinc</td><td class="benefit">Sun + test vitamin D</td></tr>
+            <tr><td class="focus">Itchy, flaky scalp</td><td>Essential fats, gut imbalance</td><td class="benefit">Omega-3s + probiotic</td></tr>
+            <tr><td class="focus">Hairline thinning</td><td>Hormonal (DHT, PCOS) or iron</td><td class="benefit">Test hormones + ferritin</td></tr>
+            <tr><td class="focus">Patchy loss</td><td>Autoimmune (alopecia areata)</td><td class="benefit">See dermatologist</td></tr>
+            <tr><td class="focus">White spots on nails</td><td>Zinc deficiency</td><td class="benefit">Pumpkin seeds, oysters</td></tr>
+            <tr><td class="focus">Shedding 3 months after stress</td><td>Telogen effluvium (delayed)</td><td class="benefit">Patience + nutrient support</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <div class="clabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 19c0-7 5-13 14-14 0 9-5 14-14 14z"/></svg>Important Reminder</div>
+        <p>These are starting points — not diagnoses. Persistent or sudden changes always warrant a conversation with a qualified practitioner. Hair often reflects something deeper that deserves proper investigation.</p>
+      </div>
+    </section>
+
+    <!-- ══ BONUS: TIMING ══ -->
+    <section class="s" id="timing">
+      <div class="s-label">Bonus Three</div>
+      <h2>The Hidden Rules of <em>Nutrient Timing</em></h2>
+      <p class="s-intro">Eating the right nutrients is only half the story. <em>When</em> and <em>with what</em> you consume them can dramatically affect how much your body actually absorbs.</p>
+      <h3>Boost Absorption</h3>
+      <div class="nut-grid">
+        <div class="nut-card vit"><div class="nut-name">Iron + Vitamin C</div><div class="nut-role">Vitamin C increases iron absorption by up to 3×. Squeeze lemon over spinach, add bell pepper to lentils.</div></div>
+        <div class="nut-card vit"><div class="nut-name">Vitamin D + Fat</div><div class="nut-role">Fat-soluble — take with avocado, eggs, or oily fish. Empty-stomach D is poorly absorbed.</div></div>
+        <div class="nut-card vit"><div class="nut-name">Turmeric + Black Pepper</div><div class="nut-role">Piperine increases curcumin absorption by up to 2000%. Always pair them.</div></div>
+        <div class="nut-card vit"><div class="nut-name">Magnesium at Night</div><div class="nut-role">Calms the nervous system and supports deeper sleep — when hair repair happens.</div></div>
+      </div>
+      <h3>Avoid These Combinations</h3>
+      <div class="nut-grid">
+        <div class="nut-card min"><div class="nut-name">Calcium + Iron</div><div class="nut-role">Compete for absorption. Separate by at least 2 hours.</div></div>
+        <div class="nut-card min"><div class="nut-name">Coffee/Tea + Meals</div><div class="nut-role">Tannins block iron absorption for 2 hours. Drink between meals.</div></div>
+        <div class="nut-card min"><div class="nut-name">High Zinc Alone</div><div class="nut-role">Long-term excess depletes copper. Aim for a 10:1 zinc-to-copper ratio.</div></div>
+        <div class="nut-card min"><div class="nut-name">Multivitamin + Coffee</div><div class="nut-role">Reduces absorption of B vitamins and minerals. Wait 30+ minutes.</div></div>
+      </div>
+      <div class="callout gold">
+        <div class="clabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 19c0-7 5-13 14-14 0 9-5 14-14 14z"/></svg>The MTHFR Note</div>
+        <p>Up to 40% of people carry a <b>MTHFR gene mutation</b> that limits their ability to use standard folic acid and B12. If supplements seem ineffective, look for <b>methylfolate</b> and <b>methylcobalamin</b> forms instead.</p>
+      </div>
+    </section>
+
+    <!-- ══ BONUS: CYCLE ══ -->
+    <section class="s" id="cycle">
+      <div class="s-label">Bonus Four</div>
+      <h2>Cycle-Aware <em>Hair Nutrition</em></h2>
+      <p class="s-intro">A woman's nutritional needs shift across her monthly cycle. Supporting these natural rhythms — rather than fighting them — keeps hormones in balance and follicles well-fed all month long.</p>
+      <div class="cycle-grid">
+        <div class="cycle-card w1">
+          <div class="cycle-week"><div class="cycle-num">Week 1</div><div class="cycle-phase">Menstruation</div></div>
+          <div class="cycle-body"><h5>Replenish Iron</h5><p>Blood loss depletes iron stores. Prioritise red meat, lentils, spinach with vitamin C. Rest more — energy and follicles need it.</p></div>
+        </div>
+        <div class="cycle-card w2">
+          <div class="cycle-week"><div class="cycle-num">Week 2</div><div class="cycle-phase">Follicular</div></div>
+          <div class="cycle-body"><h5>Build &amp; Strengthen</h5><p>Estrogen rising — peak energy for hair growth. Load up on protein, leafy greens, and complex carbs. Best time for new routines.</p></div>
+        </div>
+        <div class="cycle-card w3">
+          <div class="cycle-week"><div class="cycle-num">Week 3</div><div class="cycle-phase">Ovulation</div></div>
+          <div class="cycle-body"><h5>Antioxidant Boost</h5><p>Estrogen peaks — support detoxification with cruciferous vegetables (broccoli, kale, Brussels sprouts) and berries to clear excess hormones.</p></div>
+        </div>
+        <div class="cycle-card w4">
+          <div class="cycle-week"><div class="cycle-num">Week 4</div><div class="cycle-phase">Luteal</div></div>
+          <div class="cycle-body"><h5>Magnesium &amp; Calm</h5><p>PMS week. Magnesium reduces cortisol-driven shedding. Add dark chocolate, pumpkin seeds, leafy greens. Cut caffeine and sugar.</p></div>
+        </div>
+      </div>
+      <div class="callout brick">
+        <div class="clabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 19c0-7 5-13 14-14 0 9-5 14-14 14z"/></svg>For PCOS &amp; Hormonal Hair Loss</div>
+        <p>Inositol (especially myo-inositol) supports insulin sensitivity and can help reduce androgen-driven thinning at the hairline. Often combined with spearmint tea, which has mild anti-androgenic effects.</p>
+      </div>
+    </section>
+
+    <!-- ══ BONUS: RECIPES ══ -->
+    <section class="s" id="recipes">
+      <div class="s-label">Bonus Five</div>
+      <h2>Three Hair Tonics to <em>Sip Your Way to Stronger Strands</em></h2>
+      <p class="s-intro">Blending nutrient-dense ingredients makes them easier to absorb — and turns daily nourishment into a ritual you'll actually keep. Each recipe targets a different aspect of hair health.</p>
+
+      <div class="recipe">
+        <div class="recipe-tag">Recipe 01 · The Strength Smoothie</div>
+        <div class="recipe-title">For brittle, breakage-prone hair</div>
+        <ul>
+          <li>1 tbsp amla powder (vitamin C + collagen-building)</li>
+          <li>1 cup spinach (iron + folate)</li>
+          <li>1 banana (silica + potassium)</li>
+          <li>1 tbsp chia seeds (omega-3 + protein)</li>
+          <li>1 cup almond milk · ½ tsp cinnamon</li>
+        </ul>
+        <div class="recipe-note">Blend until smooth. Drink in the morning for 30 days.</div>
+      </div>
+
+      <div class="recipe r2">
+        <div class="recipe-tag">Recipe 02 · The Scalp Shine Tonic</div>
+        <div class="recipe-title">For dry, dull strands and flaky scalp</div>
+        <ul>
+          <li>1 tbsp flaxseed oil or 2 tbsp ground flax (omega-3)</li>
+          <li>½ avocado (healthy fats + vitamin E)</li>
+          <li>1 cup wild blueberries (antioxidants)</li>
+          <li>1 tbsp raw cacao (copper + magnesium)</li>
+          <li>1 cup coconut water · ice</li>
+        </ul>
+        <div class="recipe-note">Perfect mid-afternoon when energy dips.</div>
+      </div>
+
+      <div class="recipe r3">
+        <div class="recipe-tag">Recipe 03 · The Calm-Down Cortisol Sip</div>
+        <div class="recipe-title">For stress-related shedding</div>
+        <ul>
+          <li>1 cup warm oat milk (magnesium + B vitamins)</li>
+          <li>½ tsp ashwagandha powder (adaptogen)</li>
+          <li>1 tsp raw honey · pinch of nutmeg</li>
+          <li>¼ tsp ground turmeric + pinch black pepper</li>
+        </ul>
+        <div class="recipe-note">Sip slowly 30 minutes before bed.</div>
+      </div>
+    </section>
+
+    <!-- ══ CHECKLIST ══ -->
+    <section class="s" id="checklist">
+      <div class="s-label">Daily Practice</div>
+      <h2>Your Daily Hair <em>Nutrition Checklist</em></h2>
+      <p class="s-intro">Use this as a gentle daily reference — not a rigid rule. Tap to mark what you managed today and notice patterns over time. Resets each day.</p>
+      <div class="checklist" id="dailyCheck">
+        <!-- filled by JS -->
+      </div>
+      <div class="callout gold">
+        <div class="clabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>A note from Aida</div>
+        <p>"True nourishment extends beyond the plate. How you eat, rest, and live all influence how nutrients are absorbed and used. Be patient with the process, consistent with your choices, and kind to yourself along the way."</p>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta">
+        <h3>Ready for the full journey?</h3>
+        <p>Pair this guide with the Healthy Happy Hair ebook and Companion Journal for the complete experience — your full hair health library.</p>
+        <a href="HHH Sales Page.html">Get the Complete Bundle</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ── Mobile drawer ── -->
+<div class="drawer-bg" id="drawerBg"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+  </button>
+  <div class="toc-label" style="margin-top:8px;">Contents</div>
+  <ul class="toc-list" id="tocListMobile"></ul>
+</aside>
+
+<footer>
+  <div class="fb"><span class="g">Healthy</span> <span class="o">Happy</span> <span class="t">Hair</span></div>
+  <p>Nutrition Guide · by Aida Sol · © 2026</p>
+</footer>
+
+<script>
+// Mirror TOC into mobile drawer
+const tocList = document.getElementById('tocList');
+const tocListMobile = document.getElementById('tocListMobile');
+tocListMobile.innerHTML = tocList.innerHTML;
+
+// Drawer open/close
+const drawer = document.getElementById('drawer');
+const drawerBg = document.getElementById('drawerBg');
+function openDrawer(){ drawer.classList.add('open'); drawerBg.classList.add('open'); }
+function closeDrawer(){ drawer.classList.remove('open'); drawerBg.classList.remove('open'); }
+document.getElementById('menuBtn').addEventListener('click', openDrawer);
+document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+drawerBg.addEventListener('click', closeDrawer);
+tocListMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+
+// Scroll-spy
+const sections = Array.from(document.querySelectorAll('section.s'));
+const tocLinks = Array.from(tocList.querySelectorAll('a'));
+const tocLinksMobile = Array.from(tocListMobile.querySelectorAll('a'));
+function setActive(id){
+  [...tocLinks, ...tocLinksMobile].forEach(a => {
+    if(a.getAttribute('href') === '#'+id) a.classList.add('active');
+    else a.classList.remove('active');
+  });
+}
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) setActive(e.target.id); });
+}, { rootMargin: '-30% 0px -60% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// Daily checklist (auto-resets each day)
+const checklistItems = [
+  'Had at least 20–30g of quality protein at one meal',
+  'Ate a handful of leafy greens (spinach, kale, or similar)',
+  'Included a source of healthy fats (avocado, olive oil, nuts)',
+  'Had an omega-3 source (oily fish, chia, flax, or algae oil)',
+  'Drank adequate water (half body weight in lbs → ounces)',
+  'Included a vitamin C source to support iron absorption',
+  'Avoided or minimised highly processed foods and sugar',
+  'Included a probiotic or fermented food',
+  'Took a mindful pause — even 5 minutes of rest or breathwork',
+  'Got 7–9 hours of sleep last night'
+];
+const today = new Date().toISOString().slice(0,10);
+const storageKey = 'hhh_nutri_check_' + today;
+const stored = JSON.parse(localStorage.getItem(storageKey) || '[]');
+// Clear old daily entries
+Object.keys(localStorage).forEach(k => {
+  if(k.startsWith('hhh_nutri_check_') && k !== storageKey) localStorage.removeItem(k);
+});
+const checkBox = document.getElementById('dailyCheck');
+checklistItems.forEach((text, i) => {
+  const row = document.createElement('div');
+  row.className = 'chk-row' + (stored.includes(i) ? ' done' : '');
+  row.innerHTML = '<div class="chk-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><div>' + text + '</div>';
+  row.addEventListener('click', () => {
+    row.classList.toggle('done');
+    const ids = checklistItems.map((_,idx) => idx).filter(idx => checkBox.children[idx].classList.contains('done'));
+    localStorage.setItem(storageKey, JSON.stringify(ids));
+  });
+  checkBox.appendChild(row);
+});
+</script>
+</body>
+</html>

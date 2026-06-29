@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="day">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>H4 heading size — options</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Spectral:wght@300;400;500;600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="hhh.css" />
+<style>
+  body{ background:var(--paper); padding:30px; }
+  .grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; max-width:1500px; margin:0 auto; }
+  @media(max-width:1000px){ .grid{ grid-template-columns:1fr; } }
+  .col{ background:var(--page); border:1px solid var(--line); border-radius:8px; padding:30px 34px 36px; box-shadow:0 10px 30px -18px rgba(70,52,28,.4); }
+  .optlbl{ font-family:var(--font-ui); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); font-weight:600; margin:0 0 4px; }
+  .optdesc{ font-family:var(--font-ui); font-size:12.5px; color:var(--ink-3); margin:0 0 20px; }
+  .prose{ font-size:var(--reading-size); }
+  /* Option B: bigger label */
+  .optB .prose h4.tag{ font-size:.92em; letter-spacing:.10em; }
+  /* Option C: title-case heading */
+  .optC .prose h4.tag{
+    font-family:var(--font-display); font-weight:600; font-size:1.2em; letter-spacing:.005em;
+    text-transform:none; color:var(--ink); gap:0;
+  }
+  .optC .prose h4.tag::after{ display:none; }
+  /* Option D: title-case sans, accent */
+  .optD .prose h4.tag{
+    font-family:var(--font-ui); font-weight:600; font-size:1.02em; letter-spacing:.005em;
+    text-transform:none; color:var(--accent);
+  }
+  .optD .prose h4.tag::after{ background:var(--line); }
+</style>
+</head>
+<body>
+<div class="grid">
+
+  <div class="col optA">
+    <p class="optlbl">A · Current</p>
+    <p class="optdesc">~14px uppercase label — smaller than body text.</p>
+    <div class="prose">
+      <p>Each strand begins life deep below the surface, shaped by structures most of us never see.</p>
+      <h4 class="tag">Cuticle</h4>
+      <p>The cuticle is the outermost layer, made of overlapping cells like roof tiles that protect the inner core and give hair its shine.</p>
+      <h4 class="tag">Things to Keep in Mind</h4>
+      <p>Healthy hair starts with a healthy scalp, and consistency matters more than any single product you can buy.</p>
+    </div>
+  </div>
+
+  <div class="col optB">
+    <p class="optlbl">B · Bigger label</p>
+    <p class="optdesc">Same elegant uppercase style, bumped to ~17px.</p>
+    <div class="prose">
+      <p>Each strand begins life deep below the surface, shaped by structures most of us never see.</p>
+      <h4 class="tag">Cuticle</h4>
+      <p>The cuticle is the outermost layer, made of overlapping cells like roof tiles that protect the inner core and give hair its shine.</p>
+      <h4 class="tag">Things to Keep in Mind</h4>
+      <p>Healthy hair starts with a healthy scalp, and consistency matters more than any single product you can buy.</p>
+    </div>
+  </div>
+
+  <div class="col optC">
+    <p class="optlbl">C · Serif heading</p>
+    <p class="optdesc">Title-case serif ~23px — reads as a true sub-heading.</p>
+    <div class="prose">
+      <p>Each strand begins life deep below the surface, shaped by structures most of us never see.</p>
+      <h4 class="tag">Cuticle</h4>
+      <p>The cuticle is the outermost layer, made of overlapping cells like roof tiles that protect the inner core and give hair its shine.</p>
+      <h4 class="tag">Things to Keep in Mind</h4>
+      <p>Healthy hair starts with a healthy scalp, and consistency matters more than any single product you can buy.</p>
+    </div>
+  </div>
+
+  <div class="col optD">
+    <p class="optlbl">D · Sans heading, accent</p>
+    <p class="optdesc">Title-case sans ~19px in green, keeps the trailing rule.</p>
+    <div class="prose">
+      <p>Each strand begins life deep below the surface, shaped by structures most of us never see.</p>
+      <h4 class="tag">Cuticle</h4>
+      <p>The cuticle is the outermost layer, made of overlapping cells like roof tiles that protect the inner core and give hair its shine.</p>
+      <h4 class="tag">Things to Keep in Mind</h4>
+      <p>Healthy hair starts with a healthy scalp, and consistency matters more than any single product you can buy.</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

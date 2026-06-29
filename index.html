@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="/favicon.png" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Healthy Happy Hair — A Modern Approach to Hair Health from the Roots · Aida Sol</title>
+<meta name="description" content="Healthy Happy Hair by Aida Sol — a modern, wellness-led guide to understanding your hair from the inside out. Get your copy for £7.99." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    /* Palette sampled from the book cover */
+    --ivory:        #f7f3ec;
+    --ivory-deep:   #f0eadf;
+    --cream-card:   #fbf9f4;
+    --ink:          #34302a;
+    --ink-soft:     #6f675c;
+    --line:         #e3dccf;
+
+    --green:        #5d6f4f;
+    --green-deep:   #4c5c40;
+    --terracotta:   #bf5430;
+    --amber:        #e2902f;
+    --gold:         #d9a93e;
+    --brick:        #9c3a30;
+    --pink:         #c14a72;
+
+    --grad: linear-gradient(95deg, var(--green) 0%, var(--gold) 28%, var(--amber) 50%, var(--terracotta) 72%, var(--pink) 100%);
+
+    --maxw: 1180px;
+    --r: 16px;
+    --shadow-soft: 0 24px 60px -28px rgba(52,48,42,.30);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:"Hanken Grotesk", system-ui, sans-serif;
+    font-size:18px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  h1,h2,h3{ font-family:"Spectral", Georgia, serif; font-weight:500; line-height:1.12; letter-spacing:-.01em; margin:0; }
+  p{ margin:0 0 1.1em; text-wrap:pretty; }
+  a{ color:inherit; }
+  img{ max-width:100%; height:auto; display:block; }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+  .grad-text{
+    background:var(--grad);
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+  }
+  .eyebrow{
+    font-size:.78rem; letter-spacing:.22em; text-transform:uppercase;
+    font-weight:600; color:var(--ink-soft); margin:0 0 1.4rem;
+  }
+  .rule{ height:3px; width:74px; border-radius:3px; background:var(--grad); }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:.6em;
+    font-family:inherit; font-weight:600; font-size:1.02rem;
+    padding:.95em 1.7em; border-radius:999px; border:1px solid transparent;
+    cursor:pointer; text-decoration:none; transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    color:#fff; background:var(--brick);
+    box-shadow:0 12px 26px -12px rgba(156,58,48,.7);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 18px 34px -14px rgba(156,58,48,.75); background:#8c332a; }
+  .btn-ghost{
+    color:var(--ink); background:transparent; border-color:var(--line);
+  }
+  .btn-ghost:hover{ border-color:var(--green); color:var(--green-deep); transform:translateY(-2px); }
+  .btn .price{ opacity:.82; font-weight:500; }
+
+  /* ---------- Header ---------- */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    transition:background .3s ease, box-shadow .3s ease, padding .3s ease;
+    padding:18px 0;
+  }
+  header.site.scrolled{
+    background:rgba(247,243,236,.86);
+    backdrop-filter:blur(10px);
+    box-shadow:0 1px 0 var(--line);
+    padding:12px 0;
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .brand{ font-family:"Spectral", serif; font-weight:600; font-size:1.18rem; letter-spacing:-.01em; text-decoration:none; }
+  .brand span{ display:inline-block; }
+  /* Cover-matched wordmark colours */
+  .wm-heal{ color:var(--green); }
+  .wm-thy{ color:var(--terracotta); }
+  .wm-happy{ color:var(--amber); }
+  .wm-hair{ color:var(--brick); }
+  .nav-links{ display:flex; gap:30px; align-items:center; }
+  .nav-links a{ text-decoration:none; font-size:.95rem; font-weight:500; color:var(--ink-soft); transition:color .2s; }
+  .nav-links a:hover{ color:var(--green-deep); }
+  .nav .btn{ padding:.66em 1.25em; font-size:.92rem; }
+  @media(max-width:860px){ .nav-links{ display:none; } }
+
+  /* ---------- Mobile menu ---------- */
+  .mob-menu{ display:none; }
+  .mob-toggle{
+    display:none; background:none; border:1px solid var(--line); border-radius:8px;
+    padding:8px 11px; cursor:pointer; flex-direction:column; gap:5px;
+  }
+  .mob-toggle span{ display:block; width:20px; height:2px; background:var(--ink); border-radius:2px; transition:transform .25s, opacity .25s; }
+  @media(max-width:860px){
+    .mob-toggle{ display:flex; }
+    .mob-menu{
+      position:fixed; inset:0; z-index:49; background:var(--ivory);
+      display:none; flex-direction:column; justify-content:center; align-items:center;
+      gap:32px;
+    }
+    .mob-menu.open{ display:flex; }
+    .mob-menu a{ font-family:"Spectral",serif; font-size:1.6rem; font-weight:500; text-decoration:none; color:var(--ink); }
+    .mob-menu a:hover{ color:var(--green-deep); }
+    .mob-menu .btn{ font-size:1.1rem; margin-top:8px; }
+    .mob-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+    .mob-toggle.open span:nth-child(2){ opacity:0; }
+    .mob-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{ position:relative; overflow:hidden; padding:40px 0 84px; }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center;
+  }
+  .hero h1{ font-size:clamp(2.5rem,5.4vw,4.2rem); margin:0 0 .5em; font-weight:500; }
+  .hero .lede{ font-size:1.28rem; color:var(--ink); max-width:30ch; font-family:"Spectral",serif; font-style:italic; font-weight:300; margin-bottom:1.1em; }
+  .hero .sub{ font-size:1.05rem; color:var(--ink-soft); max-width:46ch; margin-bottom:2rem; }
+  .cta-row{ display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+  .cta-note{ margin-top:1.3rem; font-size:.9rem; color:var(--ink-soft); display:flex; align-items:center; gap:.5em; }
+  .cta-note .dot{ width:7px; height:7px; border-radius:50%; background:var(--green); }
+  .hero-pills{ display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+  .hero-pill{
+    font-family:"Hanken Grotesk",sans-serif; font-size:.78rem; font-weight:700;
+    letter-spacing:.1em; text-transform:uppercase;
+    padding:.5em 1.1em; border-radius:999px; border:1.5px solid transparent;
+    cursor:default;
+  }
+  .pill-green{ background:#e4ebdb; color:#4c5c40; border-color:#b8cfa8; }
+  .pill-peach{ background:#f6e3d2; color:#9c3a30; border-color:#e8b89c; }
+  .pill-gold{  background:#f4e8cc; color:#8a6010; border-color:#d9a93e; }
+
+  /* Book presentation */
+  .book-stage{ position:relative; display:flex; justify-content:center; align-items:center; }
+  .glow{
+    position:absolute; inset:-8% -4% -4% -4%; z-index:0;
+    background:var(--grad); filter:blur(70px); opacity:.20; border-radius:50%;
+    transform:translateY(6%);
+  }
+  .book{
+    position:relative; z-index:1; width:min(380px,84%);
+    transform:perspective(1600px) rotateY(-13deg) rotateX(2deg);
+    transform-style:preserve-3d;
+    transition:transform .6s cubic-bezier(.2,.7,.2,1);
+    border-radius:4px 8px 8px 4px;
+    box-shadow:
+      0 2px 1px rgba(52,48,42,.10),
+      26px 34px 60px -22px rgba(52,48,42,.42);
+  }
+  .book:hover{ transform:perspective(1600px) rotateY(-7deg) rotateX(1deg); }
+  .book img{ border-radius:4px 8px 8px 4px; }
+  /* page edge */
+  .book::after{
+    content:""; position:absolute; top:1.4%; right:-13px; height:97%; width:13px;
+    background:linear-gradient(90deg,#cfc7b8,#f3eee3 40%,#e6dfd0 60%,#d8d0c0);
+    border-radius:0 3px 3px 0;
+    transform:rotateY(34deg); transform-origin:left center;
+    box-shadow:1px 0 2px rgba(0,0,0,.12);
+  }
+  /* spine shading */
+  .book::before{
+    content:""; position:absolute; top:0; left:0; height:100%; width:18px; z-index:2;
+    background:linear-gradient(90deg, rgba(52,48,42,.16), rgba(52,48,42,0));
+    border-radius:4px 0 0 4px;
+  }
+
+  /* ---------- Section scaffolding ---------- */
+  section{ padding:96px 0; }
+  .sec-head{ max-width:620px; margin-bottom:54px; }
+  .sec-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+  .sec-head.center .rule{ margin-left:auto; margin-right:auto; }
+  .sec-head h2{ font-size:clamp(2rem,3.6vw,2.9rem); margin:1.1rem 0 .55rem; }
+  .sec-head p{ color:var(--ink-soft); font-size:1.08rem; margin:0; }
+
+  /* alternating band */
+  .band{ background:var(--ivory-deep); }
+
+  /* ---------- What's inside ---------- */
+  .cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .card{
+    background:var(--cream-card); border:1px solid var(--line); border-radius:var(--r);
+    padding:34px 30px 32px; position:relative; overflow:hidden;
+    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .card::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:3px; background:var(--grad);
+    opacity:0; transition:opacity .3s ease;
+  }
+  .card:hover{ transform:translateY(-5px); box-shadow:var(--shadow-soft); border-color:transparent; }
+  .card:hover::before{ opacity:1; }
+  .card .num{ font-family:"Spectral",serif; font-size:1.5rem; font-weight:600; }
+  .card .part{ font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft); font-weight:600; margin-top:.2em; }
+  .card h3{ font-size:1.32rem; margin:.7em 0 .45em; }
+  .card p{ font-size:.98rem; color:var(--ink-soft); margin:0; }
+  .card .num-row{ display:flex; align-items:baseline; gap:.6em; }
+
+
+  /* ---------- Bundle section ---------- */
+  .bundle-cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .bundle-card{
+    background:var(--cream-card); border:1px solid var(--line); border-radius:var(--r);
+    padding:34px 28px 30px; display:flex; flex-direction:column; gap:14px;
+    position:relative; overflow:hidden;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .bundle-card::before{ content:""; position:absolute; top:0; left:0; right:0; height:3px; }
+  .bundle-card:nth-child(1)::before{ background:linear-gradient(90deg,var(--green),var(--gold)); }
+  .bundle-card:nth-child(2)::before{ background:linear-gradient(90deg,var(--brick),var(--amber)); }
+  .bundle-card:nth-child(3)::before{ background:linear-gradient(90deg,var(--gold),var(--terracotta)); }
+  .bundle-card:hover{ transform:translateY(-5px); box-shadow:var(--shadow-soft); }
+  .bc-icon{ width:48px; height:48px; border-radius:10px; display:flex; align-items:center; justify-content:center; }
+  .bc-icon svg{ width:22px; height:22px; }
+  .bc-icon--green{ background:#e4ebdb; color:#4c5c40; }
+  .bc-icon--peach{ background:#f6e3d2; color:#9c3a30; }
+  .bc-icon--gold{  background:#f4e8cc; color:#8a6010; }
+  .bc-title{ font-family:"Spectral",serif; font-size:1.26rem; font-weight:500; margin:0; }
+  .bc-desc{ font-size:.97rem; color:var(--ink-soft); margin:0; flex:1; line-height:1.62; }
+  .bc-tag{ font-size:.72rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); margin-top:6px; }
+  @media(max-width:760px){ .bundle-cards{ grid-template-columns:1fr; } }
+
+  /* ---------- Who it's for ---------- */
+  .foryou-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+  .foryou-lead{ font-family:"Spectral",serif; font-size:1.5rem; line-height:1.4; font-weight:400; }
+  .foryou-lead em{ font-style:italic; }
+  .check-list{ list-style:none; padding:0; margin:0; display:grid; gap:18px; }
+  .check-list li{ display:flex; gap:16px; align-items:flex-start; font-size:1.04rem; }
+  .check-list .ic{
+    flex:0 0 auto; width:30px; height:30px; border-radius:50%; margin-top:2px;
+    display:grid; place-items:center; background:rgba(93,111,79,.12); color:var(--green-deep);
+  }
+  .check-list .ic svg{ width:15px; height:15px; }
+
+  /* pull quote */
+  .pull{
+    margin:0; padding:46px 0 0; border-top:1px solid var(--line);
+  }
+  .pull p{ font-family:"Spectral",serif; font-style:italic; font-size:1.45rem; color:var(--green-deep); margin:0; line-height:1.45; }
+
+  /* ---------- Author ---------- */
+  .author-grid{ display:grid; grid-template-columns:300px 1fr; gap:56px; align-items:center; }
+  .author-photo{
+    aspect-ratio:1/1; border-radius:50%; position:relative; overflow:hidden;
+    background:var(--grad); display:grid; place-items:center;
+  }
+  .author-photo .inner{
+    position:absolute; inset:6px; border-radius:50%; background:var(--cream-card);
+    display:grid; place-items:center; text-align:center;
+  }
+  .author-photo .mono{ font-family:"Spectral",serif; font-size:3.4rem; font-weight:500; }
+  .author-photo .mono .grad-text{ display:inline; }
+  .author-photo .ph{ font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin-top:.4em; }
+  .author h2{ font-size:clamp(1.9rem,3.2vw,2.6rem); margin-bottom:.2em; }
+  .author .role{ color:var(--terracotta); font-weight:600; letter-spacing:.04em; font-size:.92rem; text-transform:uppercase; margin-bottom:1.4rem; }
+  .author p{ color:var(--ink); font-size:1.08rem; }
+  .author .placeholder-tag{ font-size:.85rem; color:var(--ink-soft); font-style:italic; }
+
+  /* ---------- Testimonials ---------- */
+  .quotes{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .quote{
+    background:var(--cream-card); border:1px solid var(--line); border-radius:var(--r);
+    padding:36px 32px; position:relative; display:flex; flex-direction:column;
+  }
+  .quote .mark{ font-family:"Spectral",serif; font-size:3.4rem; line-height:.6; height:.5em; }
+  .quote .body{ font-family:"Spectral",serif; font-style:italic; font-size:1.12rem; color:var(--ink); margin:1.1rem 0 1.6rem; flex:1; }
+  .quote .who{ display:flex; align-items:center; gap:12px; }
+  .quote .avatar{ width:40px; height:40px; border-radius:50%; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family:"Spectral",serif; font-size:.72rem; font-weight:600; letter-spacing:.04em; flex-shrink:0; }
+  .quote:nth-child(1) .avatar{ background:linear-gradient(135deg,#e4ebdb,#d9e8ca); color:#4c5c40; }
+  .quote:nth-child(2) .avatar{ background:linear-gradient(135deg,#f6e3d2,#f0cdb4); color:#9c3a30; }
+  .quote:nth-child(3) .avatar{ background:linear-gradient(135deg,#f4e8cc,#edd9a3); color:#8a6010; }
+  .quote .name{ font-weight:600; font-size:.96rem; }
+  .quote .meta{ font-size:.82rem; color:var(--ink-soft); }
+  .placeholder-pill{
+    display:inline-block; font-size:.7rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink-soft); border:1px dashed var(--line); border-radius:999px;
+    padding:.35em .9em; margin-bottom:14px; align-self:flex-start;
+  }
+
+  /* ---------- Final CTA ---------- */
+  .buy{ background:var(--green-deep); color:#f4f1ea; position:relative; overflow:hidden; }
+  .buy .ribbon{ position:absolute; inset:0; background:var(--grad); opacity:.14; mix-blend-mode:screen; }
+  .buy .wrap{ position:relative; z-index:1; }
+  .buy-grid{ display:grid; grid-template-columns:1fr auto; gap:48px; align-items:center; }
+  .buy h2{ color:#fff; font-size:clamp(2rem,3.6vw,3rem); margin-bottom:.5rem; }
+  .buy p{ color:rgba(244,241,234,.82); max-width:46ch; margin:0; }
+  .buy-includes{ list-style:none; padding:0; margin:1.7rem 0 0; display:flex; flex-direction:column; gap:.72rem; }
+  .buy-includes li{ position:relative; padding-left:1.9em; color:rgba(244,241,234,.9); font-size:1rem; }
+  .buy-includes li::before{ content:""; position:absolute; left:.1em; top:.42em; width:11px; height:7px; border-left:2.2px solid var(--gold); border-bottom:2.2px solid var(--gold); transform:rotate(-45deg); }
+  .buy-price{ display:flex; justify-content:flex-end; }
+  .buy-card{
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.18);
+    border-radius:20px; padding:32px 34px 30px; text-align:center; min-width:300px;
+    box-shadow:0 30px 64px -32px rgba(0,0,0,.6);
+  }
+  .buy-card .num{ font-family:"Spectral",serif; font-size:3.7rem; line-height:1; font-weight:500; color:#fff; }
+  .buy-card .num small{ font-size:1.4rem; vertical-align:super; opacity:.8; margin-right:.04em; }
+  .buy-card .ship{ font-size:.82rem; letter-spacing:.01em; color:rgba(244,241,234,.7); margin:.5rem 0 1.5rem; }
+  .buy .btn-buy{ background:#fff; color:var(--green-deep); box-shadow:0 14px 30px -12px rgba(0,0,0,.5); width:100%; justify-content:center; }
+  .buy .btn-buy:hover{ background:#fffaf0; transform:translateY(-2px); }
+  .buy-card .buy-secure{ font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(244,241,234,.6); margin-top:14px; }
+  .buy-disclaimer{
+    margin-top:42px; padding-top:24px; border-top:1px solid rgba(244,241,234,.18);
+    font-size:.9rem; color:rgba(244,241,234,.72); display:flex; flex-wrap:wrap; gap:6px 14px; align-items:center;
+  }
+  .buy-disclaimer a{ color:#fff; font-weight:600; text-decoration:none; border-bottom:1px solid rgba(255,255,255,.4); padding-bottom:1px; white-space:nowrap; }
+  .buy-disclaimer a:hover{ border-color:#fff; }
+  @media(max-width:680px){ .buy-card{ min-width:0; width:100%; } }
+
+  /* ---------- Footer ---------- */
+  footer.site{ padding:54px 0; background:var(--ivory); }
+  .foot{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:18px; }
+  .foot .brand{ font-size:1.05rem; }
+  .foot .small{ font-size:.85rem; color:var(--ink-soft); }
+  .foot a{ text-decoration:none; color:var(--ink-soft); }
+  .foot a:hover{ color:var(--green-deep); }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in{ opacity:1; transform:none; }
+  @media(prefers-reduced-motion:reduce){ .reveal{ opacity:1; transform:none; transition:none; } html{ scroll-behavior:auto; } }
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:960px){
+    .cards, .quotes{ grid-template-columns:1fr 1fr; }
+    .hero-grid{ grid-template-columns:1fr; gap:48px; }
+    .hero{ padding-top:18px; }
+    .book-stage{ order:-1; }
+    .book{ width:min(300px,70%); transform:perspective(1600px) rotateY(-9deg); }
+    .foryou-grid{ grid-template-columns:1fr; gap:36px; }
+    .author-grid{ grid-template-columns:1fr; gap:34px; justify-items:start; }
+    .author-photo{ width:200px; }
+    .buy-grid{ grid-template-columns:1fr; gap:30px; }
+    .buy-price{ justify-content:flex-start; }
+  }
+  @media(max-width:560px){
+    body{ font-size:16px; }
+    section{ padding:56px 0; }
+    .wrap{ padding:0 18px; }
+    .cards, .quotes{ grid-template-columns:1fr; }
+    .hero .lede{ max-width:none; }
+    .cta-row{ flex-direction:column; align-items:stretch; }
+    .cta-row .btn{ justify-content:center; text-align:center; }
+    .hero-pills{ gap:8px; }
+    .hero-pill{ font-size:.72rem; padding:.45em 1em; }
+    .bundle-cards{ grid-template-columns:1fr; }
+    .bundle-card{ padding:26px 22px 22px; }
+    .sec-head h2{ font-size:1.8rem; }
+    .buy-grid{ grid-template-columns:1fr; }
+    .buy-price{ justify-content:stretch; }
+    .buy-card{ min-width:0; width:100%; padding:26px 22px 22px; }
+    .buy-card .num{ font-size:3rem; }
+    .buy h2{ font-size:1.8rem; }
+    .foryou-lead{ font-size:1.25rem; }
+    .author-photo{ width:160px; }
+    .author h2{ font-size:1.8rem; }
+    .quote{ padding:26px 22px; }
+    .quote .body{ font-size:1rem; }
+    .foot{ flex-direction:column; text-align:center; gap:10px; }
+    .cta-note{ flex-wrap:wrap; justify-content:center; text-align:center; }
+    .check-list li{ font-size:.96rem; }
+    .card{ padding:26px 22px 22px; }
+    .bc-title{ font-size:1.1rem; }
+  }
+
+  /* extra small 375px phones */
+  @media(max-width:400px){
+    .wrap{ padding:0 14px; }
+    .hero h1{ font-size:2.1rem; }
+    .btn{ font-size:.92rem; padding:.85em 1.3em; }
+    .buy-card .num{ font-size:2.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site" id="siteHeader">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Healthy Happy Hair"><span class="wm-heal">Heal</span><span class="wm-thy">thy</span>&nbsp;<span class="wm-happy">Happy</span>&nbsp;<span class="wm-hair">Hair</span></a>
+    <nav class="nav-links">
+      <a href="#inside">What's inside</a>
+      <a href="#foryou">Who it's for</a>
+      <a href="#author">The author</a>
+      <a href="ebook/Healthy%20Happy%20Hair.html">Read ebook</a>
+      <a href="Healthy%20Happy%20Hair%20Companion%20Journal.html">Journal</a>
+    </nav>
+    <button class="mob-toggle" id="mobToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a class="btn btn-primary" href="#buy">Get the book</a>
+  </div>
+</header>
+
+<!-- Mobile menu (hidden on desktop via CSS) -->
+<div class="mob-menu" id="mobMenu" role="dialog" aria-label="Navigation">
+  <a href="#inside" class="mob-link">What's inside</a>
+  <a href="#foryou" class="mob-link">Who it's for</a>
+  <a href="#author" class="mob-link">The author</a>
+  <a href="ebook/Healthy%20Happy%20Hair.html" class="mob-link">Read ebook</a>
+  <a href="Healthy%20Happy%20Hair%20Companion%20Journal.html" class="mob-link">Journal</a>
+  <a class="btn btn-primary" href="#buy">Get the book</a>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <p class="eyebrow">A book by Aida&nbsp;Sol</p>
+      <h1>Your hair tells <span class="grad-text">the truth</span> your body cannot hide.</h1>
+      <p class="lede">A modern approach to hair health  from the roots.</p>
+      <p class="sub">Not a product pitch. Not a miracle promise. Healthy Happy Hair is the guide you were never given the missing link between how you feel inside and what shows up on your scalp.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#buy">Get your copy <span class="price">— £7.99</span></a>
+        <a class="btn btn-ghost" href="#inside">What's inside ↓</a>
+      </div>
+      <p class="cta-note"><span class="dot"></span> Digital eBook &amp; PDF · Instant Download · Secure Checkout</p>
+      <div class="hero-pills">
+        <span class="hero-pill pill-green">20 Chapters</span>
+        <span class="hero-pill pill-peach">Interactive Journal</span>
+        <span class="hero-pill pill-gold">Scalp &amp; Nutrition Guide</span>
+      </div>
+    </div>
+    <div class="book-stage reveal">
+      <div class="glow"></div>
+      <div class="book">
+        <img src="assets/cover.png" width="2400" height="3600" alt="Cover of Healthy Happy Hair by Aida Sol — a modern approach to hair health from the roots" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHAT'S INSIDE ===================== -->
+<section id="inside" class="band">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <div class="rule"></div>
+      <h2>What's inside</h2>
+      <p>Twenty chapters across six parts — a grounded reset that replaces overwhelm with understanding, and confusion with clarity.</p>
+    </div>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="num-row"><span class="num grad-text">01</span></div>
+        <p class="part">Part One</p>
+        <h3>Discover your hair's potential</h3>
+        <p>Why hair is more than aesthetics and how structure, type, genetics, and scalp health set the foundation for everything that follows.</p>
+      </article>
+      <article class="card reveal">
+        <div class="num-row"><span class="num grad-text">02</span></div>
+        <p class="part">Part Two</p>
+        <h3>Nourish from within</h3>
+        <p>The gut–hair connection, hormones, and lab work decoded plus the nutrients, vitamins, and foods that genuinely fuel healthy growth.</p>
+      </article>
+      <article class="card reveal">
+        <div class="num-row"><span class="num grad-text">03</span></div>
+        <p class="part">Part Three</p>
+        <h3>Build your routine</h3>
+        <p>Simple habits for good-hair days, making sense of product labels, and styling with love instead of damage.</p>
+      </article>
+      <article class="card reveal">
+        <div class="num-row"><span class="num grad-text">04</span></div>
+        <p class="part">Part Four</p>
+        <h3>Overcome hair challenges</h3>
+        <p>Thinning, breakage, greys and colouring, what's really driving each pattern, and how to restore balance the right way.</p>
+      </article>
+      <article class="card reveal">
+        <div class="num-row"><span class="num grad-text">05</span></div>
+        <p class="part">Part Five</p>
+        <h3>Advanced care &amp; rituals</h3>
+        <p>From PRP, micro-needling, and red-light therapy to scalp massage, oiling, and cultural hair-care traditions around the world.</p>
+      </article>
+      <article class="card reveal">
+        <div class="num-row"><span class="num grad-text">06</span></div>
+        <p class="part">Part Six</p>
+        <h3>Embrace your journey</h3>
+        <p>The mind–body–hair connection, building real confidence, and a personalised plan you can actually maintain for life.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== THE BUNDLE ===================== -->
+<section id="bundle" class="band">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <div class="rule"></div>
+      <h2>The bundle</h2>
+      <p>One purchase unlocks your full digital library — beautifully designed for daily use, on any screen.</p>
+    </div>
+    <div class="bundle-cards">
+      <div class="bundle-card reveal">
+        <div class="bc-icon bc-icon--green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 3v18M8 9h8M8 14h5"/></svg>
+        </div>
+        <h3 class="bc-title">The Ebook</h3>
+        <p class="bc-desc">20 chapters covering scalp biology, nutrition, nervous system connections, hair colour, and more. Beautifully formatted for online reading.</p>
+        <div class="bc-tag">Online Reader Included</div>
+      </div>
+      <div class="bundle-card reveal">
+        <div class="bc-icon bc-icon--peach">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </div>
+        <h3 class="bc-title">Companion Journal</h3>
+        <p class="bc-desc">An interactive digital journal with daily trackers, scalp check-ins, water intake, mood scales, weekly reflections, and a vision board — all auto-saved.</p>
+        <div class="bc-tag">Web App · Works on Mobile</div>
+      </div>
+      <div class="bundle-card reveal">
+        <div class="bc-icon bc-icon--gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3 class="bc-title">PDF Editions</h3>
+        <p class="bc-desc">Print-ready PDF versions of both the ebook and journal — formatted to A5 with the same elegant typography and design. Download and keep forever.</p>
+        <div class="bc-tag">Print-Ready · A5 Format</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHO IT'S FOR ===================== -->
+<section id="foryou">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="rule"></div>
+      <h2>Who it's for</h2>
+    </div>
+    <div class="foryou-grid">
+      <div class="reveal">
+        <p class="foryou-lead">If you've tried the fixes, followed the trends, and bought the promises yet the results never last — this book was written for you.</p>
+        <blockquote class="pull">
+          <p>Instead of blaming your hair, you learn how to listen to it.</p>
+        </blockquote>
+      </div>
+      <ul class="check-list reveal">
+        <li>
+          <span class="ic"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span>You've chased products and routines, but nothing has truly stuck and you're tired of guessing.</span>
+        </li>
+        <li>
+          <span class="ic"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span>You want to understand the <em>why</em> beneath thinning, dryness, shedding, or breakage.</span>
+        </li>
+        <li>
+          <span class="ic"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span>You're navigating change stress, hormones, midlife and want grounded, realistic care that fits a busy life.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AUTHOR ===================== -->
+<section id="author" class="band">
+  <div class="wrap">
+    <div class="author author-grid">
+      <div class="author-photo reveal" title="Author photo placeholder">
+        <div class="inner">
+          <div>
+            <div class="mono"><span class="grad-text">AS</span></div>
+            <div class="ph">
+</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <p class="eyebrow" style="margin-bottom:.6rem;">About the author</p>
+        <h2>Aida Sol</h2>
+        <p class="role">Wellness writer</p>
+        <p>Aida Sol is a wellness writer who believes the body speaks in patterns and hair is one of its clearest messengers. Drawing on years of research into nutrition, lifestyle, stress, and holistic wellbeing, she's discovered that what happens on your scalp rarely stays on your scalp. It reflects everything happening within.
+
+Through Healthy Happy Hair, Aida shares a thoughtful, accessible guide to nurturing stronger hair from the inside out. Rather than another product-focused book, she explores the real connections between how you care for yourself and what your body and hair reflects back. Her writing combines evidence-based wellness principles with practical strategies you can actually implement because lasting change comes from curiosity, consistency, and a kinder relationship with yourself.</p>
+        <p class="placeholder-tag">
+</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <div class="rule"></div>
+      <h2>Early words</h2>
+      <p>Placeholder quotes drop in your real reader reviews and endorsements here.</p>
+    </div>
+    <div class="quotes">
+      <figure class="quote reveal">
+        <span class="placeholder-pill">Reader review</span>
+        <div class="mark grad-text">“</div>
+        <p class="body">I finally understand why my hair has been struggling. This book connected the dots between my hormones and my hair health in a way nothing else has. Everything shifted once I started applying these principles.</p>
+        <figcaption class="who">
+          <span class="avatar">J</span>
+          <span><span class="name">Jenny</span><br /><span class="meta">London</span></span>
+        </figcaption>
+      </figure>
+      <figure class="quote reveal">
+        <span class="placeholder-pill">READER REVIEW</span>
+        <div class="mark grad-text">“</div>
+        <p class="body">I'm not a hair expert, but I am someone who's tried every product under the sun. This book was the first thing that actually made me understand why my hair was doing what it was doing. That knowledge changed everything.</p>
+        <figcaption class="who">
+          <span class="avatar">A</span>
+          <span><span class="name">Alex</span><br /><span class="meta">Brighton</span></span>
+        </figcaption>
+      </figure>
+      <figure class="quote reveal">
+        <span class="placeholder-pill">Reader review</span>
+        <div class="mark grad-text">“</div>
+        <p class="body">It was refreshing to read something with real depth about hair. I never realized how much of what happens to our hair actually comes from within. It's not just about the products you use. This book showed me how the way I care for myself directly reflects in my hair, and it covers all those internal aspects people don't usually think about.</p>
+        <figcaption class="who">
+          <span class="avatar">Am</span>
+          <span><span class="name">Amelia</span><br /><span class="meta">Manchester</span></span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BUY ===================== -->
+<section id="buy" class="buy">
+  <div class="ribbon"></div>
+  <div class="wrap">
+    <div class="buy-grid">
+      <div class="reveal">
+        <h2>Let your hair reflect alignment, not struggle.</h2>
+        <p>Healthy hair doesn't chase trends. It grows through knowledge, consistency, and care that begins inside. Begin your reset today.</p>
+        <ul class="buy-includes">
+          <li>The complete <strong>Healthy Happy Hair</strong> eBook — read on any device</li>
+          <li>The fillable <strong>Companion Journal</strong> to track your progress</li>
+          <li>Instant download &amp; lifetime access — yours to keep</li>
+        </ul>
+      </div>
+      <div class="buy-price reveal">
+        <div class="buy-card">
+          <div class="num"><small>£</small>7.99</div>
+          <div class="ship">Digital eBook &amp; PDF · Instant download</div>
+          <a class="btn btn-buy" href="#" data-checkout aria-label="Buy Healthy Happy Hair">Buy now — £7.99 →</a>
+          <div class="buy-secure">Secure checkout</div>
+        </div>
+      </div>
+    </div>
+    <div class="buy-disclaimer reveal">
+      <span>Healthy Happy Hair is shared for educational purposes only — it is not medical, professional, or expert hair advice.</span>
+      <a href="disclaimer.html">Read the full disclaimer →</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <div class="brand" aria-label="Healthy Happy Hair"><span class="wm-heal">Heal</span><span class="wm-thy">thy</span> <span class="wm-happy">Happy</span> <span class="wm-hair">Hair</span></div>
+      <div class="small">A modern approach to hair health from the roots by Aida Sol</div>
+    </div>
+    <div class="small">© 2026 Aida Sol · <a href="#top">Back to top ↑</a></div>
+  </div>
+</footer>
+
+<script>
+  // Header background on scroll
+  var header = document.getElementById('siteHeader');
+  var onScroll = function(){
+    if(window.scrollY > 24){ header.classList.add('scrolled'); }
+    else{ header.classList.remove('scrolled'); }
+  };
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  // Reveal on scroll
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el, i){
+    el.style.transitionDelay = ((i % 3) * 70) + 'ms';
+    io.observe(el);
+  });
+
+  // Mobile menu
+  var mobToggle = document.getElementById('mobToggle');
+  var mobMenu = document.getElementById('mobMenu');
+  function toggleMenu(open){
+    mobMenu.classList.toggle('open', open);
+    mobToggle.classList.toggle('open', open);
+    mobToggle.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  mobToggle.addEventListener('click', function(){ toggleMenu(!mobMenu.classList.contains('open')); });
+  mobMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ toggleMenu(false); });
+  });
+
+  // Checkout links — set CHECKOUT_URL to your Stripe Payment Link / Checkout URL
+  var CHECKOUT_URL = ''; // e.g. 'https://buy.stripe.com/your-link'
+  if(CHECKOUT_URL){
+    document.querySelectorAll('[data-checkout]').forEach(function(a){ a.href = CHECKOUT_URL; });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="day">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>H4 — keep size, add contrast</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Spectral:wght@300;400;500;600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="hhh.css" />
+<style>
+  body{ background:var(--paper); padding:30px; }
+  .wrap{ max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:20px; }
+  .col{ background:var(--page); border:1px solid var(--line); border-radius:8px; padding:28px 34px 34px; box-shadow:0 10px 30px -18px rgba(70,52,28,.4); }
+  .optlbl{ font-family:var(--font-ui); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); font-weight:600; margin:0 0 4px; }
+  .optdesc{ font-family:var(--font-ui); font-size:12.5px; color:var(--ink-3); margin:0 0 18px; }
+  .prose{ font-size:var(--reading-size); }
+  .prose h4.tag{ margin:1.5em 0 .4em; }
+
+  /* 1 · Serif, green accent */
+  .o1 .prose h4.tag{
+    font-family:var(--font-display); font-weight:600; font-size:1.22em; letter-spacing:.005em;
+    text-transform:none; color:var(--accent); gap:0;
+  }
+  .o1 .prose h4.tag::after{ display:none; }
+
+  /* 2 · Serif ink, leading accent bar */
+  .o2 .prose h4.tag{
+    font-family:var(--font-display); font-weight:600; font-size:1.22em; letter-spacing:.005em;
+    text-transform:none; color:var(--ink); gap:.5em; align-items:baseline;
+  }
+  .o2 .prose h4.tag::before{
+    content:""; flex:0 0 auto; width:18px; height:3px; border-radius:2px; background:var(--accent);
+    transform:translateY(-.28em);
+  }
+  .o2 .prose h4.tag::after{ display:none; }
+
+  /* 3 · Sans, green, uppercase-ish weight (modern) */
+  .o3 .prose h4.tag{
+    font-family:var(--font-ui); font-weight:600; font-size:1.04em; letter-spacing:.01em;
+    text-transform:none; color:var(--accent);
+  }
+  .o3 .prose h4.tag::after{ background:var(--line); }
+
+  /* 4 · Serif ink, short underline rule */
+  .o4 .prose h4.tag{
+    display:block; font-family:var(--font-display); font-weight:600; font-size:1.22em; letter-spacing:.005em;
+    text-transform:none; color:var(--ink); padding-bottom:.28em; position:relative;
+  }
+  .o4 .prose h4.tag::after{
+    content:""; position:absolute; left:0; bottom:0; width:46px; height:2px; background:var(--accent); flex:none;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="col o1">
+    <p class="optlbl">1 · Serif + green</p>
+    <p class="optdesc">Same size, coloured green — colour does the separating.</p>
+    <div class="prose">
+      <p>Each strand begins life deep below the surface, shaped by structures most of us never see.</p>
+      <h4 class="tag">The Cuticle</h4>
+      <p>The cuticle is the outermost layer, made of overlapping cells like roof tiles that protect the inner core and give hair its shine.</p>
+    </div>
+  </div>
+
+  <div class="col o2">
+    <p class="optlbl">2 · Serif + accent bar</p>
+    <p class="optdesc">Ink serif with a small green bar in front — quiet but clear.</p>
+    <div class="prose">
+      <p>Each strand begins life deep below the surface, shaped by structures most of us never see.</p>
+      <h4 class="tag">The Cuticle</h4>
+      <p>The cuticle is the outermost layer, made of overlapping cells like roof tiles that protect the inner core and give hair its shine.</p>
+    </div>
+  </div>
+
+  <div class="col o3">
+    <p class="optlbl">3 · Sans + green</p>
+    <p class="optdesc">Switches to the sans UI font — different font = instant contrast.</p>
+    <div class="prose">
+      <p>Each strand begins life deep below the surface, shaped by structures most of us never see.</p>
+      <h4 class="tag">The Cuticle</h4>
+      <p>The cuticle is the outermost layer, made of overlapping cells like roof tiles that protect the inner core and give hair its shine.</p>
+    </div>
+  </div>
+
+  <div class="col o4">
+    <p class="optlbl">4 · Serif + underline</p>
+    <p class="optdesc">Ink serif with a short green underline — editorial feel.</p>
+    <div class="prose">
+      <p>Each strand begins life deep below the surface, shaped by structures most of us never see.</p>
+      <h4 class="tag">The Cuticle</h4>
+      <p>The cuticle is the outermost layer, made of overlapping cells like roof tiles that protect the inner core and give hair its shine.</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
