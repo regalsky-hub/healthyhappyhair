@@ -7,7 +7,7 @@
 <title>Healthy Happy Hair — Companion Journal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="journal.css" />
 <link rel="stylesheet" href="journal-mobile.css" />
 </head>
@@ -16,7 +16,7 @@
 <!-- ── Mobile topbar ── -->
 <div class="topbar" id="topbar">
   <div>
-    <div class="topbar__brand" style="font-family:'Spectral',serif;font-size:1.18rem;font-weight:600;letter-spacing:-.01em;"><span style="color:#5d6f4f">Heal</span><span style="color:#bf5430">thy</span> <span style="color:#e2902f">Happy</span> <span style="color:#9c3a30">Hair</span></div>
+    <div class="topbar__brand"><span class="g">Heal</span><span class="tc">thy</span> <span class="o">Happy</span> <span class="t">Hair</span></div>
     <div class="topbar__sub">Companion Journal</div>
   </div>
   <div class="topbar__right">
@@ -33,9 +33,10 @@
 <!-- ── Drawer nav ── -->
 <div class="drawer" id="drawer" aria-hidden="true">
   <div class="drawer__head">
-    <div class="drawer__brand" style="font-family:'Spectral',serif;font-size:1.18rem;font-weight:600;letter-spacing:-.01em;"><span style="color:#5d6f4f">Heal</span><span style="color:#bf5430">thy</span> <span style="color:#e2902f">Happy</span> <span style="color:#9c3a30">Hair</span></div>
+    <div class="drawer__brand"><span class="g">Heal</span><span class="tc">thy</span> <span class="o">Happy</span> <span class="t">Hair</span></div>
     <div class="drawer__sub">Companion Journal</div>
   </div>
+  <div class="drawer__toc-label">Contents</div>
   <nav class="drawer__list" id="drawerList">
     <a href="#p0"><span class="n">·</span><span>Cover</span></a>
     <a href="#p1"><span class="n">01</span><span>Welcome &amp; How to Use</span></a>
@@ -46,9 +47,12 @@
     <a href="#p4"><span class="n">06</span><span>Scalp &amp; Shedding</span></a>
     <a href="#p5"><span class="n">07</span><span>Length &amp; Trim Tracker</span></a>
     <a href="#p6"><span class="n">08</span><span>Protective Style Log</span></a>
-    <a href="#p7"><span class="n">09</span><span>Weekly Nutrient Planner</span></a>
-    <a href="#p8"><span class="n">10</span><span>Mind–Body Check-in</span></a>
-    <a href="#p9"><span class="n">11</span><span>Trigger &amp; Flare-up Tracker</span></a>
+    <a href="#pweekly"><span class="n">09</span><span>Weekly Hair Review</span></a>
+    <a href="#p7"><span class="n">10</span><span>Weekly Nutrient Planner</span></a>
+    <a href="#p8"><span class="n">11</span><span>Mind–Body Check-in</span></a>
+    <a href="#p9"><span class="n">12</span><span>Trigger &amp; Flare-up Tracker</span></a>
+    <a href="#p10"><span class="n">13</span><span>Monthly Recap</span></a>
+    <a href="#p11"><span class="n">14</span><span>Product &amp; Routine Shelf</span></a>
   </nav>
   <div class="drawer__foot">
     <a class="drawer__back" href="index.html">← Back to the book</a>
@@ -70,7 +74,7 @@
 
   <!-- ============ Contents rail ============ -->
   <nav class="rail">
-    <div class="rail__brand" style="font-family:'Spectral',serif;font-size:1.18rem;font-weight:600;letter-spacing:-.01em;"><span style="color:#5d6f4f">Heal</span><span style="color:#bf5430">thy</span> <span style="color:#e2902f">Happy</span> <span style="color:#9c3a30">Hair</span></div>
+    <div class="rail__brand"><span class="g">Heal</span><span class="tc">thy</span> <span class="o">Happy</span> <span class="t">Hair</span></div>
     <div class="rail__sub">Companion Journal</div>
     <div class="rail__list">
       <a href="#p0"><span class="n">·</span><span>Cover</span></a>
@@ -82,9 +86,12 @@
       <a href="#p4"><span class="n">06</span><span>Scalp &amp; Shedding</span></a>
       <a href="#p5"><span class="n">07</span><span>Length &amp; Trim Tracker</span></a>
       <a href="#p6"><span class="n">08</span><span>Protective Style Log</span></a>
-      <a href="#p7"><span class="n">09</span><span>Weekly Nutrient Planner</span></a>
-      <a href="#p8"><span class="n">10</span><span>Mind–Body Check-in</span></a>
-      <a href="#p9"><span class="n">11</span><span>Trigger &amp; Flare-up Tracker</span></a>
+      <a href="#pweekly"><span class="n">09</span><span>Weekly Hair Review</span></a>
+      <a href="#p7"><span class="n">10</span><span>Weekly Nutrient Planner</span></a>
+      <a href="#p8"><span class="n">11</span><span>Mind–Body Check-in</span></a>
+      <a href="#p9"><span class="n">12</span><span>Trigger &amp; Flare-up Tracker</span></a>
+      <a href="#p10"><span class="n">13</span><span>Monthly Recap</span></a>
+      <a href="#p11"><span class="n">14</span><span>Product &amp; Routine Shelf</span></a>
     </div>
     <div class="rail__foot">
       <a class="rail__back" href="index.html">← Back to the book</a>
@@ -121,9 +128,8 @@
         <span>by Aida Sol</span>
       </div>
       <div class="inner">
-        <img class="cover-logo" src="uploads/HHH.png" alt="Healthy Happy Hair" />
+        <img class="cover-logo" src="uploads/HHH-cropped.png" alt="Healthy Happy Hair" />
         <div class="ml">Companion Journal</div>
-        <div class="tag">a modern approach to hair health from the roots</div>
       </div>
       <div class="row between author">
         <span>Track · Nourish · Grow</span>
@@ -463,7 +469,45 @@
       <div class="pageno">Healthy Happy Hair · 08</div>
     </section>
 
-    <!-- ===== 09 Weekly Nutrient Planner ===== -->
+    <!-- ===== 09 Weekly Hair Review ===== -->
+    <section class="page" id="pweekly" data-screen-label="09 Weekly Review">
+      <div class="phead">
+        <h1 class="title upper"><span class="g">WEEKLY</span> <span class="o">HAIR</span> <span class="d">REVIEW</span></h1>
+        <span class="dateline">Week of <input class="fld" data-k="wr_week" style="width:90px" /></span>
+      </div>
+      <div class="rule-w"></div>
+      <p class="lead mb0">A short pause between wash days — enough distance to catch a pattern, not so much you lose the thread.</p>
+
+      <div class="band">This week's hair &amp; scalp, in a few words</div>
+      <div class="write lines-3" contenteditable="true" data-k="wr_notes" data-ph="How it looked, felt and behaved…"></div>
+
+      <div class="cols c2 mt14" style="align-items:start;">
+        <div>
+          <div class="lab" style="font-weight:600;">Shedding this week</div>
+          <div class="dotscale mt8" data-k="wr_shed"><span class="ends">Low</span><span class="dots" data-n="5"></span><span class="ends">High</span></div>
+        </div>
+        <div>
+          <div class="lab brick" style="font-weight:600;">Week, overall</div>
+          <div class="dotscale mt8" data-k="wr_rate"><span class="ends">Rough</span><span class="dots" data-n="5"></span><span class="ends">Great</span></div>
+        </div>
+      </div>
+
+      <div class="band gold">What helped this week</div>
+      <div class="checkgrid mt8" style="grid-template-columns:repeat(3,1fr);">
+        <span class="chk" data-k="wr_massage"><span class="box"></span>Scalp massage</span>
+        <span class="chk" data-k="wr_protein"><span class="box"></span>Protein / moisture balance</span>
+        <span class="chk" data-k="wr_water"><span class="box"></span>Drinking enough water</span>
+        <span class="chk" data-k="wr_silk"><span class="box"></span>Silk pillowcase / bonnet</span>
+        <span class="chk" data-k="wr_heat"><span class="box"></span>Less heat &amp; tension</span>
+        <span class="chk" data-k="wr_sleep"><span class="box"></span>Sleep &amp; rest</span>
+      </div>
+
+      <div class="band green">One thing to carry into next week</div>
+      <div class="write lines-2" contenteditable="true" data-k="wr_carry" data-ph="The small adjustment worth repeating…"></div>
+      <div class="pageno">Healthy Happy Hair · 09</div>
+    </section>
+
+    <!-- ===== 10 Weekly Nutrient Planner ===== -->
     <section class="page" id="p7" data-screen-label="07 Nutrient Planner">
       <div class="phead">
         <h1 class="title upper"><span class="g">WEEKLY</span> <span class="o">NUTRIENT</span> <span class="d">PLANNER</span></h1>
@@ -513,10 +557,10 @@
           <div class="glasses mt8" data-k="nt_water" data-count="8"></div>
         </div>
       </div>
-      <div class="pageno">Healthy Happy Hair · 09</div>
+      <div class="pageno">Healthy Happy Hair · 10</div>
     </section>
 
-    <!-- ===== 10 Mind–Body Check-in ===== -->
+    <!-- ===== 11 Mind–Body Check-in ===== -->
     <section class="page" id="p8" data-screen-label="08 Mind–Body">
       <div class="phead">
         <h1 class="title upper"><span class="g">MIND</span><span class="d">–</span><span class="o">BODY</span> <span class="d">CHECK-IN</span></h1>
@@ -564,10 +608,10 @@
 
       <div class="band green">What my body needs today</div>
       <div class="write lines-3" contenteditable="true" data-k="mb_needs" data-ph="Rest, water, movement, nourishment, calm…"></div>
-      <div class="pageno">Healthy Happy Hair · 10</div>
+      <div class="pageno">Healthy Happy Hair · 11</div>
     </section>
 
-    <!-- ===== 11 Trigger & Flare-up ===== -->
+    <!-- ===== 12 Trigger & Flare-up ===== -->
     <section class="page" id="p9" data-screen-label="09 Trigger & Flare-up">
       <div class="phead">
         <h1 class="title upper"><span class="g">TRIGGER</span> <span class="d">&amp;</span> <span class="o">FLARE-UP</span> <span class="t">TRACKER</span></h1>
@@ -603,11 +647,78 @@
 
       <div class="band">A pattern I'm starting to see</div>
       <div class="write lines-3" contenteditable="true" data-k="tf_pattern" data-ph="Connecting the dots over time…"></div>
-      <div class="pageno">Healthy Happy Hair · 11</div>
+      <div class="pageno">Healthy Happy Hair · 12</div>
+    </section>
+
+    <!-- ===== 13 Monthly Recap ===== -->
+    <section class="page" id="p10" data-screen-label="13 Monthly Recap">
+      <div class="phead">
+        <h1 class="title upper"><span class="g">MONTHLY</span> <span class="o">RECAP</span></h1>
+        <span class="dateline">Month <input class="fld" data-k="mr_month" style="width:96px" /></span>
+      </div>
+      <div class="rule-w"></div>
+      <p class="lead mb0">Zoom out. A month is long enough to see what the day-to-day logs were really saying.</p>
+
+      <div class="band">Wins this month</div>
+      <div class="write lines-3" contenteditable="true" data-k="mr_wins" data-ph="What went right — habits kept, results noticed…"></div>
+
+      <div class="band gold">Where I struggled</div>
+      <div class="write lines-3" contenteditable="true" data-k="mr_struggle" data-ph="What slipped, what felt hard…"></div>
+
+      <div class="band green">What improved</div>
+      <div class="checkgrid mt8" style="grid-template-columns:repeat(3,1fr);">
+        <span class="chk" data-k="mr_scalp"><span class="box"></span>Scalp health</span>
+        <span class="chk" data-k="mr_shed"><span class="box"></span>Shedding</span>
+        <span class="chk" data-k="mr_length"><span class="box"></span>Length retention</span>
+        <span class="chk" data-k="mr_texture"><span class="box"></span>Texture &amp; shine</span>
+        <span class="chk" data-k="mr_mood"><span class="box"></span>Energy &amp; mood</span>
+        <span class="chk" data-k="mr_consist"><span class="box"></span>Consistency</span>
+      </div>
+
+      <div class="row between mt18" style="align-items:center;">
+        <span class="lab" style="font-weight:600;">This month, overall</span>
+        <span class="dotscale" data-k="mr_rate"><span class="ends">Rough</span><span class="dots" data-n="5"></span><span class="ends">Great</span></span>
+      </div>
+
+      <div class="band brick">One change for next month</div>
+      <div class="write lines-2" contenteditable="true" data-k="mr_change" data-ph="The one adjustment worth making…"></div>
+      <div class="pageno">Healthy Happy Hair · 13</div>
+    </section>
+
+    <!-- ===== 14 Product & Routine Shelf ===== -->
+    <section class="page" id="p11" data-screen-label="14 Product Shelf">
+      <div class="phead">
+        <h1 class="title upper"><span class="g">PRODUCT</span> <span class="d">&amp;</span> <span class="o">ROUTINE</span> <span class="t">SHELF</span></h1>
+      </div>
+      <div class="rule-w"></div>
+      <p class="lead mb0">Your current lineup, at a glance — so it's easy to see what's actually earning its place.</p>
+
+      <div class="band">My current staples</div>
+      <table class="tbl mt8">
+        <thead><tr><th style="width:110px;">Category</th><th>Product</th><th class="center" style="width:64px;">Keep?</th></tr></thead>
+        <tbody>
+          <tr><td><span class="cell" style="display:block;color:var(--ink-soft);font-size:11px;letter-spacing:.08em;text-transform:uppercase;">Cleanser</span></td><td><input class="cell" data-k="prod_cleanser" /></td><td class="center"><span class="chk" data-k="prod_cleanser_keep" style="justify-content:center;"><span class="box"></span></span></td></tr>
+          <tr><td><span class="cell" style="display:block;color:var(--ink-soft);font-size:11px;letter-spacing:.08em;text-transform:uppercase;">Conditioner</span></td><td><input class="cell" data-k="prod_conditioner" /></td><td class="center"><span class="chk" data-k="prod_conditioner_keep" style="justify-content:center;"><span class="box"></span></span></td></tr>
+          <tr><td><span class="cell" style="display:block;color:var(--ink-soft);font-size:11px;letter-spacing:.08em;text-transform:uppercase;">Deep treatment</span></td><td><input class="cell" data-k="prod_treatment" /></td><td class="center"><span class="chk" data-k="prod_treatment_keep" style="justify-content:center;"><span class="box"></span></span></td></tr>
+          <tr><td><span class="cell" style="display:block;color:var(--ink-soft);font-size:11px;letter-spacing:.08em;text-transform:uppercase;">Leave-in</span></td><td><input class="cell" data-k="prod_leavein" /></td><td class="center"><span class="chk" data-k="prod_leavein_keep" style="justify-content:center;"><span class="box"></span></span></td></tr>
+          <tr><td><span class="cell" style="display:block;color:var(--ink-soft);font-size:11px;letter-spacing:.08em;text-transform:uppercase;">Oil / serum</span></td><td><input class="cell" data-k="prod_oil" /></td><td class="center"><span class="chk" data-k="prod_oil_keep" style="justify-content:center;"><span class="box"></span></span></td></tr>
+          <tr><td><span class="cell" style="display:block;color:var(--ink-soft);font-size:11px;letter-spacing:.08em;text-transform:uppercase;">Styler</span></td><td><input class="cell" data-k="prod_styler" /></td><td class="center"><span class="chk" data-k="prod_styler_keep" style="justify-content:center;"><span class="box"></span></span></td></tr>
+          <tr><td><span class="cell" style="display:block;color:var(--ink-soft);font-size:11px;letter-spacing:.08em;text-transform:uppercase;">Supplement</span></td><td><input class="cell" data-k="prod_supp" /></td><td class="center"><span class="chk" data-k="prod_supp_keep" style="justify-content:center;"><span class="box"></span></span></td></tr>
+        </tbody>
+      </table>
+
+      <div class="band gold">Products I want to try next</div>
+      <div class="write lines-3" contenteditable="true" data-k="prod_next" data-ph="On the wishlist, and why…"></div>
+
+      <div class="band brick">Ingredients to avoid</div>
+      <div class="write lines-2" contenteditable="true" data-k="prod_avoid" data-ph="Sulfates, silicones, fragrance, alcohol — whatever's shown you it doesn't agree…"></div>
+      <div class="pageno">Healthy Happy Hair · 14</div>
     </section>
 
     <!-- ===== Blank page template (hidden, used by add-page picker) ===== -->
-    <section class="page" id="ptBlank" style="display:none;"></section>
+    <section class="page" id="ptBlank" style="display:none;">
+      <div class="write" style="flex:1;min-height:160px;background-image:none;" contenteditable="true" data-k="blank_notes" data-ph="Start writing…"></div>
+    </section>
 
     <!-- ===== Lined page template (hidden, used by add-page picker) ===== -->
     <section class="page" id="ptLined" style="display:none;">
