@@ -17,7 +17,7 @@
   --ink:#2E2A25; --ink-soft:#6E655A; --ink-faint:#9A9082;
   --line:#D7CDBC; --line-soft:#E3DACB;
   --bpeach:#F6E3D2; --bgreen:#E4EBDB; --bgold:#F4E8CC; --bneutral:#EEE7DA;
-  --page-w:148mm; --page-h:210mm; --pad:12mm;
+  --page-w:210mm; --page-h:297mm; --pad:18mm;
 }
 *{box-sizing:border-box;}
 html{-webkit-text-size-adjust:100%;}
@@ -178,12 +178,12 @@ p{margin:0 0 .6em;}
 
 /* ── Print ── */
 @media print{
-  @page{size:A5 portrait;margin:0;}
+  @page{size:A4 portrait;margin:0;}
   *{print-color-adjust:exact;-webkit-print-color-adjust:exact;}
   body{background:#fff;}
   .sheet{padding:0;gap:0;}
   .page{
-    width:148mm;height:210mm;min-height:unset;max-height:210mm;
+    width:210mm;height:297mm;min-height:unset;max-height:297mm;
     box-shadow:none;border:0;overflow:hidden;
     break-after:page;page-break-after:always;
     break-inside:avoid;page-break-inside:avoid;margin:0;
