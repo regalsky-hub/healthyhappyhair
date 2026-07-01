@@ -17,7 +17,7 @@
   --ink:#2E2A25; --ink-soft:#6E655A; --ink-faint:#9A9082;
   --line:#D7CDBC; --line-soft:#E3DACB;
   --bpeach:#F6E3D2; --bgreen:#E4EBDB; --bgold:#F4E8CC; --bneutral:#EEE7DA;
-  --page-w:210mm; --page-h:297mm; --pad:18mm;
+  --page-w:148mm; --page-h:210mm; --pad:12mm;
 }
 *{box-sizing:border-box;}
 html{-webkit-text-size-adjust:100%;}
@@ -178,12 +178,12 @@ p{margin:0 0 .6em;}
 
 /* ── Print ── */
 @media print{
-  @page{size:A4 portrait;margin:0;}
+  @page{size:A5 portrait;margin:0;}
   *{print-color-adjust:exact;-webkit-print-color-adjust:exact;}
   body{background:#fff;}
   .sheet{padding:0;gap:0;}
   .page{
-    width:210mm;height:297mm;min-height:unset;max-height:297mm;
+    width:148mm;height:210mm;min-height:unset;max-height:210mm;
     box-shadow:none;border:0;overflow:hidden;
     break-after:page;page-break-after:always;
     break-inside:avoid;page-break-inside:avoid;margin:0;
@@ -572,8 +572,8 @@ p{margin:0 0 .6em;}
     </div>
     <div style="display:flex;flex-direction:column;gap:6px;">
       <div class="lab brick" style="text-align:center;">After</div>
-      <div class="slot" data-slot-id="pdf-slot1">
-        <div class="slot-plus" aria-label="Add photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div style="flex:1;min-height:95mm;border:1.4px solid var(--line);border-radius:3px;background:linear-gradient(135deg,#EBF0E4,#F4F7F0 60%,#E8EEE1);position:relative;display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'Hanken Grotesk',sans-serif;font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--line);">Add photo here</span>
       </div>
       <div class="ifield" style="margin:0;"><span class="lbl">Date</span><span class="ln"></span></div>
       <div class="ifield" style="margin:0;"><span class="lbl">How my hair feels</span><span class="ln"></span></div>
@@ -1797,44 +1797,5 @@ document.addEventListener('keydown', function(e){ if((e.ctrlKey||e.metaKey)&&e.k
   <rect x="26" y="28" width="22" height="1" rx=".5" fill="#D7CDBC"/>
 </svg>
 </template>
-<input type="file" id="pdf-slot-input" accept="image/*" style="display:none"/>
-<style>
-.slot{position:relative;cursor:pointer;overflow:hidden;flex:1;min-height:95mm;border:1.4px solid var(--line);border-radius:3px;display:flex;align-items:center;justify-content:center;}
-.slot:first-of-type{background:linear-gradient(135deg,#FBEFE6,#FCF6EF 60%,#F7EAD9);}
-.slot:last-of-type{background:linear-gradient(135deg,#EBF0E4,#F4F7F0 60%,#E8EEE1);}
-.slot img.slot-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-.slot-plus{width:44px;height:44px;border:1.8px solid var(--terracotta);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--terracotta);}
-.slot-plus svg{width:22px;height:22px;}
-.slot.has-img .slot-plus{display:none;}
-</style>
-<script>
-(function(){
-  const input = document.getElementById('pdf-slot-input');
-  let active = null;
-  document.querySelectorAll('.slot[data-slot-id]').forEach(slot => {
-    const id = slot.dataset.slotId;
-    try{ const saved = localStorage.getItem('hhh_'+id); if(saved) applyImage(slot, saved); }catch(e){}
-    slot.addEventListener('click', function(){
-      if(slot.classList.contains('has-img')) return;
-      active = slot; input.value=''; input.click();
-    });
-  });
-  input.addEventListener('change', function(){
-    if(!active || !input.files[0]) return;
-    const reader = new FileReader();
-    reader.onload = e => {
-      applyImage(active, e.target.result);
-      try{ localStorage.setItem('hhh_'+active.dataset.slotId, e.target.result); }catch(ex){}
-      active = null;
-    };
-    reader.readAsDataURL(input.files[0]);
-  });
-  function applyImage(slot, src){
-    let img = slot.querySelector('.slot-img');
-    if(!img){ img = document.createElement('img'); img.className='slot-img'; slot.prepend(img); }
-    img.src = src; slot.classList.add('has-img');
-  }
-})();
-</script>
 </body>
 </html>
