@@ -240,9 +240,12 @@
     { id:'p3', icon:'<svg viewBox="0 0 32 32" fill="none" stroke="#557355" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M13 6v-1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><line x1="12" y1="13" x2="20" y2="13"/><line x1="12" y1="17" x2="20" y2="17"/><line x1="12" y1="21" x2="16" y2="21"/></svg>', label:'Wash Day Log', desc:'Track routine, products & results' },
     { id:'p4', icon:'<svg viewBox="0 0 32 32" fill="none" stroke="#557355" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="13" r="6"/><path d="M16 19v8"/><path d="M12 23h8"/><path d="M10 10 Q8 6 10 4"/><path d="M22 10 Q24 6 22 4"/></svg>', label:'Scalp & Shedding', desc:'Weekly scalp condition tracker' },
     { id:'p6', icon:'<svg viewBox="0 0 32 32" fill="none" stroke="#557355" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 8 Q16 4 23 8 L23 20 Q16 26 9 20 Z"/><path d="M13 16 Q16 14 19 16"/><line x1="16" y1="11" x2="16" y2="14"/></svg>', label:'Protective Style Log', desc:'Install, wear & take-down notes' },
+    { id:'pweekly', icon:'<svg viewBox="0 0 32 32" fill="none" stroke="#9C4B3E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6 L23 6 L23 26 L9 26 Z" stroke-linejoin="round"/><path d="M9 12 L23 12"/><path d="M13 17 L15.5 19.5 L20 15"/></svg>', label:'Weekly Hair Review', desc:'A short pulse-check between wash days' },
     { id:'p7', icon:'<svg viewBox="0 0 32 32" fill="none" stroke="#D29A2E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 26 Q16 6 25 26"/><line x1="10" y1="20" x2="22" y2="20"/><circle cx="16" cy="13" r="1.5" fill="#D29A2E"/></svg>', label:'Nutrient Planner', desc:'Hair-loving meals & supplements' },
     { id:'p8', icon:'<svg viewBox="0 0 32 32" fill="none" stroke="#557355" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5 A11 11 0 1 1 5 16"/><path d="M5 9 L5 16 L11 16"/><line x1="16" y1="10" x2="16" y2="16"/><line x1="16" y1="16" x2="20" y2="19"/></svg>', label:'Mind–Body Check-in', desc:'Mood, sleep, stress & cycle' },
     { id:'p9', icon:'<svg viewBox="0 0 32 32" fill="none" stroke="#DD7E33" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5 L18.5 12 L26 12 L20 17 L22.5 24 L16 20 L9.5 24 L12 17 L6 12 L13.5 12 Z"/></svg>', label:'Trigger & Flare-up', desc:'Catch patterns & signals early' },
+    { id:'p10', icon:'<svg viewBox="0 0 32 32" fill="none" stroke="#9C4B3E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="20" height="20" rx="2.5"/><line x1="6" y1="12" x2="26" y2="12"/><line x1="11" y1="6" x2="11" y2="9"/><line x1="21" y1="6" x2="21" y2="9"/><path d="M10.5 20.5 L14 24 L21.5 16"/></svg>', label:'Monthly Recap', desc:'Zoom out on wins, struggles & change' },
+    { id:'p11', icon:'<svg viewBox="0 0 32 32" fill="none" stroke="#557355" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5h6v4l2 3v13a2 2 0 0 1-2 2h-6a2 2 0 0 1-2-2V12l2-3z"/><line x1="12.3" y1="17" x2="19.7" y2="17"/></svg>', label:'Product & Routine Shelf', desc:'Your staples, wishlist & no-gos' },
     { id:'ptLined', icon:'<svg viewBox="0 0 32 32" fill="none" stroke="#6E655A" stroke-width="1.8" stroke-linecap="round"><rect x="7" y="5" width="18" height="22" rx="2"/><line x1="11" y1="11" x2="21" y2="11"/><line x1="11" y1="15" x2="21" y2="15"/><line x1="11" y1="19" x2="21" y2="19"/><line x1="11" y1="23" x2="17" y2="23"/></svg>', label:'Lined page', desc:'Blank ruled page for free notes' },
     { id:'ptBlank', icon:'<svg viewBox="0 0 32 32" fill="none" stroke="#9A9082" stroke-width="1.8" stroke-linecap="round"><rect x="7" y="5" width="18" height="22" rx="2"/></svg>', label:'Blank page', desc:'Completely empty page' },
   ];
@@ -335,8 +338,8 @@
 
     sheet.insertBefore(clone, addBtn);
 
-    // Count existing pages for nav number
-    const pageCount = document.querySelectorAll('.sheet .page').length;
+    // Count existing pages for nav number (exclude hidden add-page templates and the unnumbered cover)
+    const pageCount = document.querySelectorAll('.sheet .page:not(.cover):not([style*="display: none"]):not([style*="display:none"])').length;
     addNavLink(uid, label, String(pageCount).padStart(2,'0'));
     buildRailObserver();
 
@@ -357,7 +360,7 @@
       const sheet = document.querySelector('.sheet');
       const addBtn = document.querySelector('.add-page-area');
       sheet.insertBefore(clone, addBtn);
-      const pageCount = document.querySelectorAll('.sheet .page').length;
+      const pageCount = document.querySelectorAll('.sheet .page:not(.cover):not([style*="display: none"]):not([style*="display:none"])').length;
       addNavLink(uid, label, String(pageCount).padStart(2,'0'));
     });
     if(addedPages.length > 0) buildRailObserver();
