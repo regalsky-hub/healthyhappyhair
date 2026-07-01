@@ -351,14 +351,14 @@ body{
 .cover .wordmark .y{color:var(--gold);}
 .cover .wordmark .t{color:var(--brick);}
 .cover .wordmark .l1,.cover .wordmark .l2{ display:block; white-space:nowrap; }
-.cover .ml{ margin-top:30px; font-size:13px; letter-spacing:.42em; text-transform:uppercase; color:var(--green-deep); font-weight:600; }
+.cover .ml{ margin-top:22px; font-size:13px; letter-spacing:.42em; text-transform:uppercase; color:var(--green-deep); font-weight:600; }
 .cover .tag{ margin-top:14px; font-style:italic; font-size:14px; color:var(--ink-soft); }
 .cover .author{ font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:var(--ink-faint); }
 .cover .filaments{ width:120px; height:120px; margin:0 auto 4px; }
 
 /* ---------- Print ---------- */
 @media print{
-  @page{ size:A5 portrait; margin:0; }
+  @page{ size:A4 portrait; margin:0; }
 
   *{ print-color-adjust:exact; -webkit-print-color-adjust:exact; }
 
@@ -368,16 +368,16 @@ body{
   .sheet{ padding:0; gap:0; }
 
   .page{
-    width:148mm;
-    height:210mm;
+    width:210mm;
+    height:297mm;
     min-height:unset;
-    max-height:210mm;
+    max-height:297mm;
     overflow:hidden;
     box-shadow:none; border:0; border-radius:0;
     break-after:page; page-break-after:always;
     break-inside:avoid; page-break-inside:avoid;
     margin:0;
-    padding:9mm; /* slightly tighter than screen 13mm */
+    padding:16mm; /* close to screen 13px equivalent, scaled up for A4 */
   }
   .page::after{ display:none; }
 
@@ -396,10 +396,11 @@ body{
   }
   .slot::after{ color:#DD7E33 !important; }
 
-  /* reduce slot height so all 4 fit on page 2 */
-  #p2 .slot{ aspect-ratio:unset !important; height:22mm !important; }
   /* also tighten the affirmation at the bottom */
   #p2 .foot-note{ padding-top:6px; margin-top:6px; }
+
+  /* shrink vision-board grid so all 4 square slots + footer fit on one A4 page */
+  #p2 .vision-grid{ width:138mm; align-self:center; }
 }
 
 /* ---------- Add-a-page UI ---------- */
