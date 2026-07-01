@@ -120,6 +120,16 @@
   font-size: 9px; letter-spacing: .26em; text-transform: uppercase;
   color: var(--ink-faint); margin-top: 3px;
 }
+.drawer__toc-label {
+  flex: 0 0 auto;
+  margin: 16px 20px 4px;
+  font-size: 9px; font-weight: 700; letter-spacing: .28em;
+  text-transform: uppercase; color: var(--green);
+  display: flex; align-items: center; gap: 8px;
+}
+.drawer__toc-label::before {
+  content: ""; width: 16px; height: 2px; background: var(--green); border-radius: 2px;
+}
 .drawer__list {
   flex: 1; overflow-y: auto; padding: 10px 14px;
   -webkit-overflow-scrolling: touch;
