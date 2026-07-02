@@ -7,7 +7,7 @@
 <title>Nutrition Guide — Healthy Happy Hair</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=Hanken+Grotesk:wght@400;500;600;700&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -40,11 +40,10 @@ img{max-width:100%;display:block;}
   padding:0 clamp(16px,4vw,40px);height:58px;
   display:flex;align-items:center;justify-content:space-between;gap:14px;
 }
-.bar-brand{font-family:"Spectral",serif;font-size:1.18rem;font-weight:600;letter-spacing:-.01em;}
-.bar-brand .wm-heal{color:#5d6f4f;}
-.bar-brand .wm-thy{color:#bf5430;}
-.bar-brand .wm-happy{color:#e2902f;}
-.bar-brand .wm-hair{color:#9c3a30;}
+.bar-brand{font-family:var(--r);font-size:15px;font-weight:600;letter-spacing:.01em;}
+.bar-brand .g{color:var(--green);}
+.bar-brand .o{color:var(--orange);}
+.bar-brand .t{color:var(--brick);}
 .bar-brand small{
   display:block;font-family:var(--u);font-size:9px;letter-spacing:.18em;
   text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-top:1px;
@@ -164,6 +163,9 @@ section.s:last-of-type{border-bottom:none;}
 .s p{font-size:clamp(14px,1.2vw,16px);line-height:1.75;color:var(--ink);margin-bottom:14px;max-width:68ch;}
 .s p em{color:var(--green-d);}
 .s p b{color:var(--ink);font-weight:600;}
+.note-disclaimer{font-family:var(--u);font-size:11.5px;color:var(--ink-3);line-height:1.6;max-width:68ch;margin-top:4px;}
+.note-disclaimer a{color:var(--brick);font-weight:600;border-bottom:1px solid rgba(168,67,43,.35);}
+.note-disclaimer a:hover{border-color:var(--brick);}
 
 /* ── NUTRIENT CARDS ── */
 .nut-grid{
@@ -345,6 +347,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.6);padding:36px clamp(16px,
 footer .fb{font-family:var(--r);font-size:18px;font-weight:500;color:#fff;}
 footer .fb .g{color:#8dba7b;}footer .fb .o{color:#e8a05c;}footer .fb .t{color:#cf7455;}
 footer p{font-family:var(--u);font-size:11px;letter-spacing:.04em;margin-top:6px;}
+footer .footer-disclaimer{font-size:10.5px;color:rgba(255,255,255,.45);letter-spacing:.02em;margin-top:12px;max-width:56ch;margin-left:auto;margin-right:auto;}
+footer .footer-disclaimer a{color:rgba(255,255,255,.75);font-weight:600;border-bottom:1px solid rgba(255,255,255,.3);}
+footer .footer-disclaimer a:hover{color:#fff;}
 
 /* ── DRAWER (mobile TOC) ── */
 .drawer{
@@ -363,6 +368,37 @@ footer p{font-family:var(--u);font-size:11px;letter-spacing:.04em;margin-top:6px
   position:absolute;top:14px;right:14px;width:36px;height:36px;
   border:none;background:var(--canvas);border-radius:50%;cursor:pointer;
   display:flex;align-items:center;justify-content:center;color:var(--ink-2);
+}
+
+/* ── TOC export box ── */
+.toc-foot{margin-top:20px;padding-top:18px;border-top:1px solid var(--line-s);display:flex;flex-direction:column;gap:7px;}
+.toc-export-label{font-family:var(--u);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:2px;}
+.btn-export{
+  appearance:none;border:1px solid var(--line-s);background:var(--paper);
+  font-family:var(--u);font-size:12.5px;color:var(--ink-2);
+  padding:9px 12px;border-radius:8px;cursor:pointer;text-align:left;
+  display:flex;align-items:center;gap:9px;transition:all .15s;width:100%;
+}
+.btn-export svg{flex:0 0 auto;color:var(--ink-3);transition:color .15s;}
+.btn-export:hover{border-color:var(--brick);color:var(--brick);background:var(--canvas);}
+.btn-export:hover svg{color:var(--brick);}
+.toc-tip{font-family:var(--u);font-size:10px;color:var(--ink-3);line-height:1.5;display:flex;gap:6px;align-items:flex-start;margin-top:2px;}
+.toc-tip svg{flex:0 0 auto;margin-top:1px;opacity:.7;}
+.toc-saved{font-family:var(--u);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);display:flex;align-items:center;gap:7px;margin-top:2px;}
+.toc-saved .dot{width:7px;height:7px;border-radius:50%;background:var(--green);opacity:.5;transition:opacity .2s;}
+.toc-saved.flash .dot{opacity:1;}
+
+/* ── PRINT ── */
+@media print{
+  .bar,.toc,.drawer,.drawer-bg,.menu-btn,.cta{display:none !important;}
+  body{background:#fff;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><text x='150' y='160' transform='rotate(-30 150 150)' font-family='Georgia, serif' font-size='20' fill='rgba(85,115,85,0.09)' text-anchor='middle'>HEALTHY HAPPY HAIR</text></svg>");background-repeat:repeat;}
+  .shell{display:block;padding:0;max-width:none;}
+  main{padding:0;}
+  .hero{background:#fff;border-radius:0;padding:0 0 22px;margin-bottom:22px;}
+  .hero::after{display:none;}
+  section.s{padding:14px 0;border-bottom:1px solid #ddd;break-inside:avoid;scroll-margin-top:0;}
+  .nut-card,.recipe,.callout,.cycle-card,.super-item,table.t,table.swap{break-inside:avoid;}
+  a{color:inherit;text-decoration:none;}
 }
 
 /* ── RESPONSIVE ── */
@@ -384,13 +420,10 @@ footer p{font-family:var(--u);font-size:11px;letter-spacing:.04em;margin-top:6px
 <!-- ── TOP BAR ── -->
 <div class="bar">
   <div class="bar-brand">
-    <span class="wm-heal">Heal</span><span class="wm-thy">thy</span> <span class="wm-happy">Happy</span> <span class="wm-hair">Hair</span>
+    <span class="g">Healthy</span> <span class="o">Happy</span> <span class="t">Hair</span>
     <small>Nutrition Guide</small>
   </div>
   <div class="bar-actions">
-    <a class="bar-btn" href="index.html">← Back to the book</a>
-    <button class="bar-btn" onclick="window.print()">Print</button>
-    <a class="bar-btn" href="HHH Nutrition Guide.html">Save as PDF</a>
     <button class="menu-btn" id="menuBtn" aria-label="Open table of contents">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
     </button>
@@ -418,6 +451,26 @@ footer p{font-family:var(--u);font-size:11px;letter-spacing:.04em;margin-top:6px
       <li><a href="#recipes"><span class="toc-num">12</span>Three Hair Tonics</a></li>
       <li><a href="#checklist"><span class="toc-num">13</span>Daily Checklist</a></li>
     </ul>
+    <div class="toc-foot">
+      <div class="toc-export-label">Save &amp; Export</div>
+      <button class="btn-export" type="button" id="btnPrint">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print
+      </button>
+      <button class="btn-export" type="button" id="btnPDF">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15h6"/><path d="M9 18h4"/></svg>
+        Save as PDF
+      </button>
+      <button class="btn-export" type="button" id="btnDownload">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download
+      </button>
+      <div class="toc-tip">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+        <span>Print or Save as PDF captures this page exactly as it looks online. In \"More settings,\" uncheck \"Headers and footers\" to remove the browser's URL/page strip.</span>
+      </div>
+      <div class="toc-saved" id="tocSaved"><span class="dot"></span>Checklist saved automatically</div>
+    </div>
   </aside>
 
   <!-- ── MAIN ── -->
@@ -691,6 +744,7 @@ footer p{font-family:var(--u);font-size:11px;letter-spacing:.04em;margin-top:6px
         <div class="clabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 19c0-7 5-13 14-14 0 9-5 14-14 14z"/></svg>Test, Don't Guess</div>
         <p>Bring this list to your next bloodwork appointment. Always supplement based on testing, not symptoms alone — excess iron, zinc, or vitamin A can <b>worsen</b> hair loss.</p>
       </div>
+      <p class="note-disclaimer">Figures above are general educational guidelines, not a diagnosis or a substitute for lab-verified results and a qualified practitioner's judgment. <a href="disclaimer.html">Read the full disclaimer →</a></p>
     </section>
 
     <!-- ══ BONUS: SYMPTOM DECODER ══ -->
@@ -744,6 +798,7 @@ footer p{font-family:var(--u);font-size:11px;letter-spacing:.04em;margin-top:6px
         <div class="clabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 19c0-7 5-13 14-14 0 9-5 14-14 14z"/></svg>The MTHFR Note</div>
         <p>Up to 40% of people carry a <b>MTHFR gene mutation</b> that limits their ability to use standard folic acid and B12. If supplements seem ineffective, look for <b>methylfolate</b> and <b>methylcobalamin</b> forms instead.</p>
       </div>
+      <p class="note-disclaimer">Figures above (absorption %, population rates) are general educational guidelines from common nutrition literature, not lab-verified for any individual. <a href="disclaimer.html">Read the full disclaimer →</a></p>
     </section>
 
     <!-- ══ BONUS: CYCLE ══ -->
@@ -846,11 +901,27 @@ footer p{font-family:var(--u);font-size:11px;letter-spacing:.04em;margin-top:6px
   </button>
   <div class="toc-label" style="margin-top:8px;">Contents</div>
   <ul class="toc-list" id="tocListMobile"></ul>
+  <div class="toc-foot">
+    <div class="toc-export-label">Save &amp; Export</div>
+    <button class="btn-export" type="button" id="btnPrintM">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Print
+    </button>
+    <button class="btn-export" type="button" id="btnPDFM">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15h6"/><path d="M9 18h4"/></svg>
+      Save as PDF
+    </button>
+    <button class="btn-export" type="button" id="btnDownloadM">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download
+    </button>
+  </div>
 </aside>
 
 <footer>
-  <div class="fb"><span class="wm-heal">Heal</span><span class="wm-thy">thy</span> <span class="wm-happy">Happy</span> <span class="wm-hair">Hair</span></div>
+  <div class="fb"><span class="g">Healthy</span> <span class="o">Happy</span> <span class="t">Hair</span></div>
   <p>Nutrition Guide · by Aida Sol · © 2026</p>
+  <p class="footer-disclaimer">Shared for educational purposes only — not medical, professional, or expert hair advice. <a href="disclaimer.html">Read the full disclaimer →</a></p>
 </footer>
 
 <script>
@@ -868,6 +939,39 @@ document.getElementById('menuBtn').addEventListener('click', openDrawer);
 document.getElementById('drawerClose').addEventListener('click', closeDrawer);
 drawerBg.addEventListener('click', closeDrawer);
 tocListMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+
+// ── Save & Export ──
+function doPrint(){ window.print(); }
+function doPDFHint(){
+  const tip = document.createElement('div');
+  tip.textContent = 'In the print dialog, set Destination → Save as PDF';
+  tip.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:100px;font-family:var(--u);font-size:12.5px;z-index:999;box-shadow:0 8px 24px -6px rgba(0,0,0,.4);';
+  document.body.appendChild(tip);
+  setTimeout(() => { window.print(); document.body.removeChild(tip); }, 700);
+}
+function doDownload(){
+  const checkState = localStorage.getItem(storageKeyForToday());
+  let html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  if(checkState){
+    const inject = '<script>try{localStorage.setItem("' + storageKeyForToday() + '",' + JSON.stringify(checkState) + ');}catch(e){}<\/script>';
+    html = html.replace('</head>', inject + '</head>');
+  }
+  const blob = new Blob([html], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Healthy Happy Hair — Nutrition Guide.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function storageKeyForToday(){ return 'hhh_nutri_check_' + new Date().toISOString().slice(0,10); }
+[['btnPrint',doPrint],['btnPDF',doPDFHint],['btnDownload',doDownload],
+ ['btnPrintM',doPrint],['btnPDFM',doPDFHint],['btnDownloadM',doDownload]].forEach(([id,fn]) => {
+  const el = document.getElementById(id);
+  if(el) el.addEventListener('click', fn);
+});
 
 // Scroll-spy
 const sections = Array.from(document.querySelectorAll('section.s'));
@@ -913,6 +1017,12 @@ checklistItems.forEach((text, i) => {
     row.classList.toggle('done');
     const ids = checklistItems.map((_,idx) => idx).filter(idx => checkBox.children[idx].classList.contains('done'));
     localStorage.setItem(storageKey, JSON.stringify(ids));
+    const savedEl = document.getElementById('tocSaved');
+    if(savedEl){
+      savedEl.classList.add('flash');
+      clearTimeout(savedEl._flashT);
+      savedEl._flashT = setTimeout(() => savedEl.classList.remove('flash'), 900);
+    }
   });
   checkBox.appendChild(row);
 });
