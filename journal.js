@@ -436,4 +436,4 @@
   buildAddPageUI();
   restorePages();
 
-})(); 
+})();
